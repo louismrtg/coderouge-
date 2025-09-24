@@ -1,8 +1,22 @@
-import { createServer } from "./index";
+// server/index.ts
 
-const app = createServer();
-const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3000;
+// ... autres imports
+import cors from "cors"; 
+// ...
 
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
-});
+export function createServer() {
+  const app = express();
+
+  // Middleware
+
+  // --- CORRECTION DU CORS ---
+  app.use(cors({
+    // REMPLACEZ VOTRE URL Vercel ici. Ceci autorise Vercel à contacter ce serveur.
+    origin: 'https://coderouge-9m2kgjvvf-louis-mrts-projects.vercel.app', 
+    methods: 'GET, POST, OPTIONS',
+    credentials: true,
+  }));
+  // -------------------------
+
+  app.use(express.json());
+  // ... le reste du code
