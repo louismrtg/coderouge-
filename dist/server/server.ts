@@ -17,6 +17,10 @@ const SUPABASE_URL = process.env.SUPABASE_URL || "";
 const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY || "";
 const TABLE_NAME = "questions";
 
+// AJOUT TEMPORAIRE : On va afficher les variables pour vérifier qu'elles sont bien chargées
+console.log("SUPABASE_URL:", SUPABASE_URL);
+console.log("SUPABASE_ANON_KEY:", SUPABASE_ANON_KEY ? "Loaded" : "Not Loaded");
+
 // On crée un client Supabase unique qui sera réutilisé par le serveur.
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
   auth: {
