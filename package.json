@@ -21,11 +21,10 @@
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.45.1",
     "dotenv": "^17.2.1",
     "embla-carousel-autoplay": "^8.6.0",
     "express": "^5.1.0",
-    "socket.io": "^4.8.1",
-    "socket.io-client": "^4.8.1",
     "zod": "^3.25.76"
   },
   "devDependencies": {
