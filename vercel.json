@@ -2,22 +2,26 @@
   "version": 2,
   "builds": [
     {
+      "src": "dist/spa/**/*",
+      "use": "@vercel/static"
+    },
+    {
       "src": "dist/server/node-build.mjs",
       "use": "@vercel/node"
-    },
-    {
-      "src": "dist/spa/**",
-      "use": "@vercel/static"
     }
   ],
-  "rewrites": [
+  "routes": [
     {
-      "source": "/api/(.*)",
-      "destination": "/dist/server/node-build.mjs"
+      "src": "/api/(.*)",
+      "dest": "/dist/server/node-build.mjs"
     },
     {
-      "source": "/(.*)",
-      "destination": "/dist/spa/$1"
+      "src": "/assets/(.*)",
+      "dest": "/dist/spa/assets/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/dist/spa/index.html"
     }
   ]
 }
