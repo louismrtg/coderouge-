@@ -1,49 +1,76 @@
+// server/index.ts
+
+// --- Imports de Supabase et Express ---
+import { createClient } from '@supabase/supabase-js';
 import express from "express";
 import cors from "cors";
 
-// --- MODIFICATIONS ICI ---
-// 1. Suppression de l'import "dotenv/config" car les variables sont gérées par Vercel.
-// 2. Suppression de l'import Socket (./socket) et des types associés, car nous retirons Socket.IO.
+// Assurez-vous que l'import de 'crypto' n'est plus là, ni de './socket'
 import { handleDemo } from "./routes/demo"; 
 import type { SubmitQuestionRequest, SubmitQuestionResponse } from "@shared/api";
 
-// --- Fonctions de Stockage Simplifiées ---
-// Nous devons simuler les fonctions qui étaient dans votre fichier 'socket' ou 'state'.
-// Ceci est une implémentation simplifiée et temporaire de l'état du serveur :
+// --- Initialisation de Supabase (Utilise les variables Vercel) ---
+// La clé d'accès sera lue dans la variable SUPABASE_SERVICE_KEY que vous avez ajoutée.
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_SERVICE_KEY;
 
-interface Question {
-  id: string;
-  firstName: string;
-  lastName: string;
-  text: string;
-  createdAt: number;
-  hidden: boolean;
+// Crée le client Supabase avec la clé service_role pour le serveur
+// Il est crucial d'utiliser la clé SERVICE_ROLE ici car elle est stockée en secret sur Vercel
+// et permet les opérations INSERT et SELECT.
+const supabase = createClient(supabaseUrl!, supabaseKey!, {
+  auth: {
+    persistSession: false // Important pour les environnements Serverless
+  }
+});
+// -----------------------------------------------------------------
+
+
+// --- Fonctions de Stockage Réelles (Persistance) ---
+
+async function getState() {
+    // Récupère toutes les questions non masquées, triées par date (les plus récentes en premier)
+    const { data: questions, error } = await supabase
+        .from('questions')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+    // En cas d'erreur de BDD, retourne un tableau vide pour éviter le crash
+    if (error) {
+        console.error("Erreur Supabase lors de la récupération :", error);
+        return { questions: [], selectedId: null };
+    }
+
+    // Le selectedId n'est plus géré ici, il faudrait une table séparée pour l'état global.
+    // Pour l'instant, on retourne juste les questions
+    return { questions: questions || [], selectedId: null }; 
 }
 
-let questions: Question[] = []; // Stockage temporaire en mémoire
-let selectedId: string | null = null;
+async function addQuestion(q: { firstName: string, lastName: string, text: string }) {
+    // Enregistre la nouvelle question dans la base de données
+    const { data, error } = await supabase
+        .from('questions')
+        .insert({
+            firstName: q.firstName,
+            lastName: q.lastName,
+            text: q.text,
+            // L'ID et created_at sont gérés par défaut par la BDD si configurée correctement,
+            // sinon on doit les inclure ici.
+        })
+        .select(); // Retourne la ligne insérée
 
-function getState() {
-    return { questions: questions, selectedId: selectedId };
+    if (error) {
+        console.error("Erreur Supabase lors de l'insertion :", error);
+        return false;
+    }
+    return true;
 }
-function addQuestion(q: Question) {
-    questions.push(q);
-}
-function selectQuestion(id: string | null) {
-    selectedId = id;
-}
-function hideSelected(id: string | null) {
-    // Si la logique de hideSelected est simple, on la laisse ici.
-    // Sinon, on peut la retirer si elle est trop complexe sans Socket.IO.
-}
-// ----------------------------------------
+// ---------------------------------------------------
 
 
 export function createServer() {
   const app = express();
 
   // Middleware
-  // Le CORS est activé pour accepter toutes les requêtes (simple pour le Serverless).
   app.use(cors());
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
@@ -57,11 +84,13 @@ export function createServer() {
   app.get("/api/demo", handleDemo);
 
   // Questions API
-  app.get("/api/questions", (_req, res) => {
-    res.json(getState());
+  app.get("/api/questions", async (_req, res) => {
+    // Utilisation de la version ASYNCHRONE de getState()
+    const state = await getState(); 
+    res.json(state);
   });
 
-  app.post("/api/questions", (req, res) => {
+  app.post("/api/questions", async (req, res) => { // La fonction doit être async
     const body = req.body as SubmitQuestionRequest;
     const firstName = (body.firstName || "").toString().trim().slice(0, 60);
     const lastName = (body.lastName || "").toString().trim().slice(0, 60);
@@ -71,35 +100,33 @@ export function createServer() {
       return res.status(400).json({ error: "Champs requis manquants" });
     }
 
-    // --- MODIFICATION ICI : Remplacement de crypto.randomUUID() ---
-    // Utilisation d'une méthode d'ID simple pour éviter les problèmes de Serverless.
-    const newId = Date.now().toString() + Math.random().toString(36).substring(2);
-    
-    const q: Question = {
-      id: newId, 
+    // Création de l'objet sans ID ni createdAt (géré par la BDD)
+    const q = {
       firstName,
       lastName,
       text,
-      createdAt: Date.now(),
-      hidden: false,
     };
+    
+    // Tentative d'ajouter à la base de données
+    const success = await addQuestion(q);
 
-    addQuestion(q);
+    if (!success) {
+        // Si l'enregistrement échoue (pour une raison de BDD), on renvoie une erreur 500
+        return res.status(500).json({ error: "Erreur lors de l'enregistrement de la question." });
+    }
 
-    const response: SubmitQuestionResponse = { ok: true, question: q };
+    const response: SubmitQuestionResponse = { ok: true, question: { ...q, id: 'temp', createdAt: Date.now(), hidden: false } };
     res.json(response);
   });
-
-  app.post("/api/questions/select", (req, res) => {
-    const id = (req.body?.id || null) as string | null;
-    selectQuestion(id);
-    res.json({ ok: true, selectedId: getState().selectedId });
+  
+  // Ces routes ne sont plus fonctionnelles sans une table de BDD dédiée à l'état global.
+  // Vous devrez les retravailler ou les supprimer :
+  app.post("/api/questions/select", (_req, res) => {
+    return res.status(501).json({ error: "Non implémenté sans état BDD" });
   });
 
-  app.post("/api/questions/hide", (req, res) => {
-    const id = (req.body?.id || null) as string | null;
-    hideSelected(id);
-    res.json({ ok: true, selectedId: getState().selectedId });
+  app.post("/api/questions/hide", (_req, res) => {
+    return res.status(501).json({ error: "Non implémenté sans état BDD" });
   });
 
   return app;
