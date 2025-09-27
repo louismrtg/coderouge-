@@ -6,28 +6,36 @@
     <title>Code Rouge</title>
     
     <!-- 
-        LIGNES AJOUTÉES ICI POUR LE FAVICON
+        LIGNES AJOUTÉES POUR LE FAVICON
         
-        ATTENTION : Vérifiez si le chemin d'accès (href) est correct. 
-        J'ai supposé que vos favicons sont à la racine (ex: /favicon.ico).
-        Le paramètre ?v=1 force le navigateur à recharger la nouvelle icône.
+        TENTATIVE AGRESSIVE : Numéro de version incrémenté à ?v=999
+        
+        Si ça ne marche toujours pas, la solution est : 
+        1. Vider le cache de l'OS (ex: redémarrer le PC)
+        2. Tester dans un autre navigateur.
     -->
     <link 
         rel="icon" 
         type="image/x-icon" 
-        href="/favicon.ico?v=1" 
+        href="/favicon.ico?v=999" 
     />
     <link 
         rel="icon" 
         type="image/png" 
         sizes="32x32" 
-        href="/favicon-32x32.png?v=1"
+        href="/favicon-32x32.png?v=999"
     >
     <link 
         rel="icon" 
         type="image/png" 
         sizes="16x16" 
-        href="/favicon-16x16.png?v=1"
+        href="/favicon-16x16.png?v=999"
+    >
+    <!-- Balise Apple-Touch-Icon pour forcer certains caches agressifs -->
+    <link 
+        rel="apple-touch-icon" 
+        sizes="180x180" 
+        href="/apple-touch-icon.png?v=999"
     >
     <!-- FIN DES LIGNES AJOUTÉES -->
     
