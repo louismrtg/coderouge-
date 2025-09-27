@@ -22053,13 +22053,13 @@ function Hk() {
 // import { useRef, useState } from 'react';
 
 // VideoPlayer.jsx
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
-export default function VideoPlayer() {
+// --- VIDEO PLAYER ---
+function VideoPlayer() {
   const videoRef = useRef(null);
   const [isMuted, setIsMuted] = useState(true);
 
-  // Activer / désactiver le son
   const toggleMute = () => {
     if (!videoRef.current) return;
     const newMuted = !isMuted;
@@ -22067,11 +22067,9 @@ export default function VideoPlayer() {
     setIsMuted(newMuted);
   };
 
-  // Passer en plein écran
   const toggleFullscreen = () => {
     if (!videoRef.current) return;
     const video = videoRef.current;
-
     if (video.requestFullscreen) video.requestFullscreen();
     else if (video.webkitRequestFullscreen) video.webkitRequestFullscreen();
     else if (video.mozRequestFullScreen) video.mozRequestFullScreen();
@@ -22080,7 +22078,6 @@ export default function VideoPlayer() {
 
   return (
     <div className="relative w-full max-w-4xl mx-auto rounded-xl overflow-hidden ring-1 ring-gray-600 bg-black">
-      {/* Vidéo */}
       <video
         ref={videoRef}
         className="w-full h-full aspect-video object-cover"
@@ -22090,8 +22087,6 @@ export default function VideoPlayer() {
         loop
         playsInline
       />
-
-      {/* Bouton Mute / Unmute */}
       <button
         onClick={toggleMute}
         className="absolute top-3 right-3 h-10 w-10 flex items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-md hover:bg-black/70 transition z-10"
@@ -22099,8 +22094,6 @@ export default function VideoPlayer() {
       >
         {isMuted ? "🔇" : "🔊"}
       </button>
-
-      {/* Bouton Plein Écran */}
       <button
         onClick={toggleFullscreen}
         className="absolute bottom-3 right-3 h-10 w-10 flex items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-md hover:bg-black/70 transition z-10"
@@ -22111,6 +22104,17 @@ export default function VideoPlayer() {
     </div>
   );
 }
+
+// --- Export par défaut de ton fichier principal ---
+export default function App() {
+  return (
+    <div>
+      <VideoPlayer />
+      {/* Ici tu peux remettre ton fil Breaking News ou autres composants */}
+    </div>
+  );
+}
+
 function Qk() {
   const n = "Au cœur de l'urgence, au cœur du débat.",
     [t, s] = k.useState(""),
