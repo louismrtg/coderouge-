@@ -22049,64 +22049,75 @@ function Hk() {
       : null
   );
 }
-function qk() {
-  const n = k.useRef(null),
-    [t, s] = k.useState(!0);
-  function i() {
-    const a = n.current;
-    if (!a) return;
-    const u = !t;
-    (a.muted = u), s(u);
+function VideoTeaser() {
+  const videoRef = React.useRef(null);
+  const [isMuted, setIsMuted] = React.useState(true);
+
+  // Activer / désactiver le son
+  function toggleSound() {
+    if (!videoRef.current) return;
+    const newMuted = !isMuted;
+    videoRef.current.muted = newMuted;
+    setIsMuted(newMuted);
   }
-  return v.jsxs("div", {
-    className:
-      "relative w-full max-w-4xl mx-auto rounded-xl overflow-hidden ring-1 ring-border bg-black",
-    children: [
-      v.jsx("video", {
-        ref: n,
-        className: "w-full h-full aspect-video object-cover",
-        src: "https://www.w3schools.com/html/mov_bbb.mp4",
-        autoPlay: !0,
-        muted: !0,
-        loop: !0,
-        playsInline: !0,
-      }),
-      v.jsx("button", {
-        onClick: i,
-        className:
-          "absolute top-3 right-3 inline-flex items-center justify-center h-10 w-10 rounded-full bg-black/60 text-white backdrop-blur active:scale-95 transition",
-        "aria-label": t ? "Activer le son" : "Couper le son",
-        children: t
-          ? v.jsxs("svg", {
-              viewBox: "0 0 24 24",
-              width: "20",
-              height: "20",
-              fill: "none",
-              stroke: "currentColor",
-              strokeWidth: "2",
-              children: [
-                v.jsx("path", { d: "M11 5L6 9H3v6h3l5 4V5z" }),
-                v.jsx("path", { d: "M19 5l-6 6" }),
-                v.jsx("path", { d: "M19 11l-6 6" }),
-              ],
-            })
-          : v.jsxs("svg", {
-              viewBox: "0 0 24 24",
-              width: "20",
-              height: "20",
-              fill: "none",
-              stroke: "currentColor",
-              strokeWidth: "2",
-              children: [
-                v.jsx("path", { d: "M11 5L6 9H3v6h3l5 4V5z" }),
-                v.jsx("path", {
-                  d: "M15.54 8.46a5 5 0 010 7.07M19.07 4.93a10 10 0 010 14.14",
-                }),
-              ],
-            }),
-      }),
-    ],
-  });
+
+  // Passer en plein écran
+  function goFullScreen() {
+    const video = videoRef.current;
+    if (!video) return;
+    if (video.requestFullscreen) {
+      video.requestFullscreen();
+    } else if (video.webkitRequestFullscreen) { /* Safari */
+      video.webkitRequestFullscreen();
+    } else if (video.msRequestFullscreen) { /* IE11 */
+      video.msRequestFullscreen();
+    }
+  }
+
+  return (
+    <div className="relative w-full max-w-4xl mx-auto rounded-xl overflow-hidden ring-1 ring-border bg-black">
+      <video
+        ref={videoRef}
+        className="w-full h-full aspect-video object-cover"
+        src="dist/spa/teaser EMC.mp4"
+        autoPlay
+        muted={true}
+        loop
+        playsInline
+      />
+
+      {/* Bouton son */}
+      <button
+        onClick={toggleSound}
+        className="absolute top-3 right-3 inline-flex items-center justify-center h-10 w-10 rounded-full bg-black/60 text-white backdrop-blur active:scale-95 transition"
+        aria-label={isMuted ? "Activer le son" : "Couper le son"}
+      >
+        {isMuted ? (
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M11 5L6 9H3v6h3l5 4V5z" />
+            <path d="M19 5l-6 6" />
+            <path d="M19 11l-6 6" />
+          </svg>
+        ) : (
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M11 5L6 9H3v6h3l5 4V5z" />
+            <path d="M15.54 8.46a5 5 0 010 7.07M19.07 4.93a10 10 0 010 14.14" />
+          </svg>
+        )}
+      </button>
+
+      {/* Bouton plein écran */}
+      <button
+        onClick={goFullScreen}
+        className="absolute top-3 right-16 inline-flex items-center justify-center h-10 w-10 rounded-full bg-black/60 text-white backdrop-blur active:scale-95 transition"
+        aria-label="Plein écran"
+      >
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M4 4h6v2H6v4H4V4zM20 4h-6v2h4v4h2V4zM4 20h6v-2H6v-4H4v6zM20 20h-6v-2h4v-4h2v6z" />
+        </svg>
+      </button>
+    </div>
+  );
 }
 function Qk() {
   const n = "Au cœur de l'urgence, au cœur du débat.",
@@ -22172,7 +22183,7 @@ function Qk() {
                     v.jsx("span", {
                       className:
                         "text-xs font-semibold uppercase tracking-widest text-white",
-                      children: "Jingle d'ouverture",
+                      children: "Jingle d'ouverture • 13:00 2 oct.",
                     }),
                   ],
                 }),
