@@ -19622,63 +19622,63 @@ function Jc(n = {}) {
   };
 }
 Jc.globalOptions = void 0;
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
+import { useEmblaCarousel } from "embla-carousel/react";
 
 export default function GS() {
-  // Hook pour ton slider Embla (ou autre logique de carrousel)
-  const [n, t] = Xc({ loop: true }, [Jc({ delay: 4000 })]);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, skipSnaps: false }, []);
 
   useEffect(() => {
-    if (t) t.reInit();
-  }, [t]);
+    if (emblaApi) emblaApi.reInit();
+  }, [emblaApi]);
 
   const slides = [
     {
       title: "Urgences saturées : le blocage hospitalier",
-      desc: (
-        <>
-          <span className="font-semibold">36 %</span> des patients de plus de 75 ans passent plus de{" "}
-          <span className="font-semibold">8 heures</span> aux urgences. <br />
-          👉 La pénurie de lits accentue la perte de chances pour les plus fragiles. <br />
-          <em className="text-sm text-muted-foreground">(Source : DREES, 2025)</em>
-        </>
-      ),
+      desc: [
+        { text: "36 %", bold: true },
+        { text: " des patients de plus de 75 ans passent plus de " },
+        { text: "8 heures", bold: true },
+        { text: " aux urgences." },
+        { text: "👉 La pénurie de lits accentue la perte de chances pour les plus fragiles." },
+        { text: "(Source : DREES, 2025)", italic: true, small: true },
+      ],
       img: "/images/urgence.jpg",
     },
     {
       title: "La crise des lits",
-      desc: (
-        <>
-          <span className="font-semibold">–11 %</span> de capacités d’hospitalisation entre 2013 et 2023. <br />
-          Près de <span className="font-semibold">43 000 lits</span> supprimés, au cœur de la saturation des services. <br />
-          <em className="text-sm text-muted-foreground">(Source : Assemblée nationale, 2024)</em>
-        </>
-      ),
+      desc: [
+        { text: "–11 %", bold: true },
+        { text: " de capacités d’hospitalisation entre 2013 et 2023." },
+        { text: "Près de " },
+        { text: "43 000 lits", bold: true },
+        { text: " supprimés, au cœur de la saturation des services." },
+        { text: "(Source : Assemblée nationale, 2024)", italic: true, small: true },
+      ],
       img: "/images/lits.jpg",
     },
     {
       title: "Les oubliés du rural",
-      desc: (
-        <>
-          <span className="font-semibold">21 %</span> des passages aux urgences sont dus à l’absence de médecins de ville. <br />
-          👉 Les territoires isolés, comme la Nièvre, sont particulièrement touchés. <br />
-          <em className="text-sm text-muted-foreground">(Source : Vie publique, 2025)</em>
-        </>
-      ),
+      desc: [
+        { text: "21 %", bold: true },
+        { text: " des passages aux urgences sont dus à l’absence de médecins de ville." },
+        { text: "👉 Les territoires isolés, comme la Nièvre, sont particulièrement touchés." },
+        { text: "(Source : Vie publique, 2025)", italic: true, small: true },
+      ],
       img: "/images/rural.jpg",
     },
   ];
 
   return (
     <div className="embla rounded-xl ring-1 ring-border">
-      <div className="embla__viewport" ref={n}>
+      <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
           {slides.map((slide) => (
             <div
               key={slide.title}
               className="embla__slide p-6 grid md:grid-cols-[1fr,2fr] gap-6 items-center"
             >
-              {/* Zone image / animation */}
+              {/* Zone image */}
               <div>
                 <img
                   src={slide.img}
@@ -19690,7 +19690,18 @@ export default function GS() {
               {/* Zone texte */}
               <div>
                 <h3 className="text-2xl font-bold">{slide.title}</h3>
-                <p className="mt-2 leading-relaxed">{slide.desc}</p>
+                <p className="mt-2 leading-relaxed">
+                  {slide.desc.map((part, idx) => (
+                    <span
+                      key={idx}
+                      className={`${part.bold ? "font-semibold" : ""} ${
+                        part.italic ? "italic" : ""
+                      } ${part.small ? "text-sm text-muted-foreground" : ""}`}
+                    >
+                      {part.text}{" "}
+                    </span>
+                  ))}
+                </p>
               </div>
             </div>
           ))}
