@@ -19622,86 +19622,82 @@ function Jc(n = {}) {
   };
 }
 Jc.globalOptions = void 0;
-function GS() {
-  const [n, t] = Xc({ loop: !0 }, [Jc({ delay: 4000 })]);
+import React, { useEffect } from "react";
 
-  k.useEffect(() => {
-    t && t.reInit();
+export default function GS() {
+  // Hook pour ton slider Embla (ou autre logique de carrousel)
+  const [n, t] = Xc({ loop: true }, [Jc({ delay: 4000 })]);
+
+  useEffect(() => {
+    if (t) t.reInit();
   }, [t]);
 
   const slides = [
     {
       title: "Urgences saturées : le blocage hospitalier",
-      desc:
-        "<span class='font-semibold'>36 %</span> des patients de plus de 75 ans passent plus de " +
-        "<span class='font-semibold'>8 heures</span> aux urgences.<br>" +
-        "👉 La pénurie de lits accentue la perte de chances pour les plus fragiles.<br>" +
-        "<em class='text-sm text-muted-foreground'>(Source : DREES, 2025)</em>",
+      desc: (
+        <>
+          <span className="font-semibold">36 %</span> des patients de plus de 75 ans passent plus de{" "}
+          <span className="font-semibold">8 heures</span> aux urgences. <br />
+          👉 La pénurie de lits accentue la perte de chances pour les plus fragiles. <br />
+          <em className="text-sm text-muted-foreground">(Source : DREES, 2025)</em>
+        </>
+      ),
       img: "/images/urgence.jpg",
     },
     {
       title: "La crise des lits",
-      desc:
-        "<span class='font-semibold'>–11 %</span> de capacités d’hospitalisation entre 2013 et 2023.<br>" +
-        "Près de <span class='font-semibold'>43 000 lits</span> supprimés, au cœur de la saturation des services.<br>" +
-        "<em class='text-sm text-muted-foreground'>(Source : Assemblée nationale, 2024)</em>",
+      desc: (
+        <>
+          <span className="font-semibold">–11 %</span> de capacités d’hospitalisation entre 2013 et 2023. <br />
+          Près de <span className="font-semibold">43 000 lits</span> supprimés, au cœur de la saturation des services. <br />
+          <em className="text-sm text-muted-foreground">(Source : Assemblée nationale, 2024)</em>
+        </>
+      ),
       img: "/images/lits.jpg",
     },
     {
       title: "Les oubliés du rural",
-      desc:
-        "<span class='font-semibold'>21 %</span> des passages aux urgences sont dus à l’absence de médecins de ville.<br>" +
-        "👉 Les territoires isolés, comme la Nièvre, sont particulièrement touchés.<br>" +
-        "<em class='text-sm text-muted-foreground'>(Source : Vie publique, 2025)</em>",
+      desc: (
+        <>
+          <span className="font-semibold">21 %</span> des passages aux urgences sont dus à l’absence de médecins de ville. <br />
+          👉 Les territoires isolés, comme la Nièvre, sont particulièrement touchés. <br />
+          <em className="text-sm text-muted-foreground">(Source : Vie publique, 2025)</em>
+        </>
+      ),
       img: "/images/rural.jpg",
     },
   ];
 
-  return v.jsx("div", {
-    className: "embla rounded-xl ring-1 ring-border",
-    children: v.jsx("div", {
-      className: "embla__viewport",
-      ref: n,
-      children: v.jsx("div", {
-        className: "embla__container",
-        children: slides.map((slide) =>
-          v.jsxs(
-            "div",
-            {
-              className:
-                "embla__slide p-6 grid md:grid-cols-[1fr,2fr] gap-6 items-center",
-              children: [
-                // Image
-                v.jsx("div", {
-                  children: v.jsx("img", {
-                    src: slide.img,
-                    alt: slide.title,
-                    className:
-                      "rounded-lg shadow-md object-cover w-full h-40",
-                  }),
-                }),
+  return (
+    <div className="embla rounded-xl ring-1 ring-border">
+      <div className="embla__viewport" ref={n}>
+        <div className="embla__container">
+          {slides.map((slide) => (
+            <div
+              key={slide.title}
+              className="embla__slide p-6 grid md:grid-cols-[1fr,2fr] gap-6 items-center"
+            >
+              {/* Zone image / animation */}
+              <div>
+                <img
+                  src={slide.img}
+                  alt={slide.title}
+                  className="rounded-lg shadow-md object-cover w-full h-40"
+                />
+              </div>
 
-                // Texte
-                v.jsxs("div", {
-                  children: [
-                    v.jsx("h3", {
-                      className: "text-2xl font-bold",
-                      children: slide.title,
-                    }),
-                    v.jsx("p", {
-                      className: "mt-2 leading-relaxed",
-                      dangerouslySetInnerHTML: { __html: slide.desc },
-                    }),
-                  ],
-                }),
-              ],
-            },
-            slide.title
-          )
-        ),
-      }),
-    }),
-  });
+              {/* Zone texte */}
+              <div>
+                <h3 className="text-2xl font-bold">{slide.title}</h3>
+                <p className="mt-2 leading-relaxed">{slide.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 }
 
   return v.jsx("div", {
