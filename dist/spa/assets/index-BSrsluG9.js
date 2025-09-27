@@ -22050,26 +22050,64 @@ function Hk() {
   );
 }
 function qk() {
-  const container = document.createElement('div');
-  container.style.position = 'relative';
-  container.style.width = '100%';
-  container.style.maxWidth = '1024px';
-  container.style.margin = '0 auto';
-  container.style.backgroundColor = 'black';
-  
-  const iframe = document.createElement('iframe');
-  iframe.src = "https://player.vimeo.com/video/1122435302?autoplay=1&loop=1&muted=1&playsinline=1";
-  iframe.width = "100%";
-  iframe.height = "100%";
-  iframe.allow = "autoplay; fullscreen; picture-in-picture";
-  iframe.frameBorder = "0";
-  container.appendChild(iframe);
-
-  document.body.appendChild(container);
+  const n = k.useRef(null),
+    [t, s] = k.useState(!0);
+  function i() {
+    const a = n.current;
+    if (!a) return;
+    const u = !t;
+    (a.muted = u), s(u);
+  }
+  return v.jsxs("div", {
+    className:
+      "relative w-full max-w-4xl mx-auto rounded-xl overflow-hidden ring-1 ring-border bg-black",
+    children: [
+      v.jsx("video", {
+        ref: n,
+        className: "w-full h-full aspect-video object-cover",
+        src: "dist/spa/teaser EMC.mp4",  // <-- remplacé l'ancien lien par ton teaser
+        autoPlay: !0,
+        muted: !0,
+        loop: !0,
+        playsInline: !0,
+      }),
+      v.jsx("button", {
+        onClick: i,
+        className:
+          "absolute top-3 right-3 inline-flex items-center justify-center h-10 w-10 rounded-full bg-black/60 text-white backdrop-blur active:scale-95 transition",
+        "aria-label": t ? "Activer le son" : "Couper le son",
+        children: t
+          ? v.jsxs("svg", {
+              viewBox: "0 0 24 24",
+              width: "20",
+              height: "20",
+              fill: "none",
+              stroke: "currentColor",
+              strokeWidth: "2",
+              children: [
+                v.jsx("path", { d: "M11 5L6 9H3v6h3l5 4V5z" }),
+                v.jsx("path", { d: "M19 5l-6 6" }),
+                v.jsx("path", { d: "M19 11l-6 6" }),
+              ],
+            })
+          : v.jsxs("svg", {
+              viewBox: "0 0 24 24",
+              width: "20",
+              height: "20",
+              fill: "none",
+              stroke: "currentColor",
+              strokeWidth: "2",
+              children: [
+                v.jsx("path", { d: "M11 5L6 9H3v6h3l5 4V5z" }),
+                v.jsx("path", {
+                  d: "M15.54 8.46a5 5 0 010 7.07M19.07 4.93a10 10 0 010 14.14",
+                }),
+              ],
+            }),
+      }),
+    ],
+  });
 }
-
-
-
 function Qk() {
   const n = "Au cœur de l'urgence, au cœur du débat.",
     [t, s] = k.useState(""),
