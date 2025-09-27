@@ -25414,7 +25414,7 @@ function kE() {
     {
       title: "Reportage : Lohann Thonnon Varenne & Jessy Bouvet",
       text: "Plongée immersive dans le quotidien de nos intervenants : portraits, parcours et moments marquants.",
-      src: null, // mettre le lien vidéo ici ou null si pas dispo
+      src: null,
     },
     {
       title: "Teaser EMC",
@@ -25424,7 +25424,7 @@ function kE() {
     {
       title: "Événements forts du débat",
       text: "Revivez les moments clés et les échanges les plus marquants de notre débat.",
-      src: null, // mettre le lien vidéo ici ou null si pas dispo
+      src: null,
     },
   ];
 
@@ -25441,8 +25441,7 @@ function kE() {
           v.jsxs(
             "div",
             {
-              className:
-                "mb-12 flex flex-col items-center text-center sm:text-left sm:items-start",
+              className: "mb-12 flex flex-col items-center text-center sm:text-left sm:items-start",
               children: [
                 v.jsx("h2", {
                   className: "text-2xl font-bold mb-2",
@@ -25454,25 +25453,20 @@ function kE() {
                 }),
                 video.src
                   ? v.jsx("div", {
-                      className:
-                        "relative w-full max-w-4xl aspect-video rounded-xl overflow-hidden ring-1 ring-border bg-black",
-                      children:
-                        index === 1
-                          ? v.jsx(qk, {}) // teaser
-                          : v.jsx("video", {
-                              className:
-                                "w-full h-full aspect-video object-cover rounded-xl",
-                              src: video.src,
-                              controls: true,
-                              muted: false,
-                              autoPlay: false,
-                              playsInline: true,
-                              style: { maxHeight: "600px" }, // limiter la hauteur
-                            }),
+                      className: "relative w-full max-w-4xl aspect-video rounded-xl overflow-hidden ring-1 ring-border bg-black group",
+                      children: v.jsxs("video", {
+                        className: "w-full h-full aspect-video object-cover rounded-xl transition-transform duration-300 group-hover:scale-105",
+                        src: video.src,
+                        controls: true,
+                        muted: false,
+                        autoPlay: false,
+                        playsInline: true,
+                        style: { maxHeight: "600px" },
+                      }),
                     })
                   : v.jsx("div", {
                       className:
-                        "w-full max-w-4xl aspect-video flex items-center justify-center rounded-xl border border-gray-300 bg-gray-100 text-gray-500 text-lg font-semibold",
+                        "w-full max-w-4xl aspect-video flex items-center justify-center rounded-xl bg-gradient-to-tr from-purple-500 via-pink-500 to-yellow-400 animate-pulse text-white font-bold text-xl shadow-lg ring-1 ring-white/30",
                       children: "Vidéo à venir",
                     }),
               ],
@@ -25484,6 +25478,7 @@ function kE() {
     }),
   });
 }
+
 
 function EE() {
   return v.jsx(ls, {
