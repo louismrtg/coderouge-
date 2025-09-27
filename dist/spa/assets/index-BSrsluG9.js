@@ -19629,8 +19629,9 @@ function GS() {
   }, [t]);
   const s = [
     {
-      title: "Urgences en action",
-      desc: "Patients, soignants et réalités du terrain",
+      title: "Le blocage hospitalier",
+      desc: "36 % des patients de plus de 75 ans passent plus de 8 heures aux urgences. 
+        👉 La pénurie de lits accentue la perte de chances pour les plus fragiles. (Source : DREES, 2025)",
       svg: v.jsxs("svg", {
         viewBox: "0 0 300 140",
         className: "w-full h-40",
@@ -19711,8 +19712,9 @@ function GS() {
       }),
     },
     {
-      title: "Bloc opératoire",
-      desc: "Tension, expertise et décisions critiques",
+      title: "La crise des lits",
+      desc: "-11 % de capacités d’hospitalisation entre 2013 et 2023. 
+        Près de 43 000 lits supprimés, au cœur de la saturation des services. (Source : Assemblée nationale, 2024)",
       svg: v.jsxs("svg", {
         viewBox: "0 0 300 140",
         className: "w-full h-40",
@@ -19740,8 +19742,9 @@ function GS() {
       }),
     },
     {
-      title: "Accueil des familles",
-      desc: "Humanité et soutien psychologique",
+      title: "Les oubliés du rural",
+      desc: "21 % des passages aux urgences sont dus à l’absence de médecins de ville. 
+        Les territoires isolés, comme la Nièvre, sont particulièrement touchés. (Source : Vie publique, janvier 2025)",
       svg: v.jsxs("svg", {
         viewBox: "0 0 300 140",
         className: "w-full h-40",
