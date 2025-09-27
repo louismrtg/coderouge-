@@ -19633,22 +19633,28 @@ function GS() {
     // === Slide 1 ===
     {
       title: "Le blocage hospitalier",
-      desc:
-        "36 % des patients de plus de 75 ans passent plus de 8 heures aux urgences.\nLa pénurie de lits accentue la perte de chances pour les plus fragiles.\n(Source : DREES, 2025)",
+      desc: [
+        "36 % des patients de plus de 75 ans passent plus de 8 heures aux urgences.",
+        "La pénurie de lits accentue la perte de chances pour les plus fragiles.",
+        <em key="src1">(Source : DREES, 2025)</em>
+      ],
       image: v.jsx("img", {
-        src: "https://ghxtmyhaueoszauzvbfh.supabase.co/storage/v1/object/sign/media/2.webp?...",
+        src: "https://ghxtmyhaueoszauzvbfh.supabase.co/storage/v1/object/public/media/2.webp",
         alt: "Le blocage hospitalier",
         className: "w-full h-40 md:h-60 lg:h-72 object-cover rounded-xl block",
-        style: { objectFit: "cover", width: "100%", height: "100%" }, // ✅ ajuste automatiquement
+        style: { objectFit: "cover", width: "100%", height: "100%" },
       }),
     },
     // === Slide 2 ===
     {
       title: "La crise des lits",
-      desc:
-        "-11 % de capacités d’hospitalisation entre 2013 et 2023.\nPrès de 43 000 lits supprimés, au cœur de la saturation des services.\n(Source : Assemblée nationale, 2024)",
+      desc: [
+        "-11 % de capacités d’hospitalisation entre 2013 et 2023.",
+        "Près de 43 000 lits supprimés, au cœur de la saturation des services.",
+        <em key="src2">(Source : Assemblée nationale, 2024)</em>
+      ],
       image: v.jsx("img", {
-        src: "https://ghxtmyhaueoszauzvbfh.supabase.co/storage/v1/object/sign/media/1.webp?...",
+        src: "https://ghxtmyhaueoszauzvbfh.supabase.co/storage/v1/object/public/media/1.webp",
         alt: "La crise des lits",
         className: "w-full h-40 md:h-60 lg:h-72 object-cover rounded-xl block",
         style: { objectFit: "cover", width: "100%", height: "100%" },
@@ -19657,10 +19663,13 @@ function GS() {
     // === Slide 3 ===
     {
       title: "Les oubliés du rural",
-      desc:
-        "21 % des passages aux urgences sont dus à l’absence de médecins de ville.\nLes territoires isolés, comme la Nièvre, sont particulièrement touchés.\n(Source : Vie publique, janvier 2025)",
+      desc: [
+        "21 % des passages aux urgences sont dus à l’absence de médecins de ville.",
+        "Les territoires isolés, comme la Nièvre, sont particulièrement touchés.",
+        <em key="src3">(Source : Vie publique, janvier 2025)</em>
+      ],
       image: v.jsx("img", {
-        src: "https://ghxtmyhaueoszauzvbfh.supabase.co/storage/v1/object/sign/media/3.webp?...",
+        src: "https://ghxtmyhaueoszauzvbfh.supabase.co/storage/v1/object/public/media/3.webp",
         alt: "Les oubliés du rural",
         className: "w-full h-40 md:h-60 lg:h-72 object-cover rounded-xl block",
         style: { objectFit: "cover", width: "100%", height: "100%" },
@@ -19690,11 +19699,9 @@ function GS() {
                       children: i.title,
                     }),
                     v.jsx("p", {
-                      className:
-                        "text-muted-foreground mt-2 whitespace-pre-line",
-                      children: i.desc.replace(
-                        /\((Source : .*?)\)/g,
-                        (_, source) => `<em>${source}</em>`
+                      className: "text-muted-foreground mt-2 whitespace-pre-line",
+                      children: i.desc.map((line, idx) =>
+                        typeof line === "string" ? line + "\n" : line
                       ),
                     }),
                   ],
