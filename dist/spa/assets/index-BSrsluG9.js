@@ -25295,27 +25295,23 @@ function bE() {
     }),
 
     // Encadré Google Forms si le serveur est en panne
-    v.jsx("div", {
-      className:
-        "mt-6 p-4 border-2 border-yellow-400 bg-yellow-50 rounded-lg text-yellow-900 max-w-xl",
-      children: v.jsxs("p", {
-        children: [
-          "Le serveur de questions est actuellement indisponible. Vous pouvez envoyer votre question via Google Forms ",
-          v.jsx(
-            "a",
-            {
-              href: "https://forms.gle/rACVMYbFaRUGnTQJ7",
-              target: "_blank",
-              className: "underline font-semibold hover:text-yellow-700",
-              children: "ici",
-            }
-          ),
-          ".",
-        ],
+v.jsx("div", {
+  className:
+    "mt-6 p-4 border-2 border-yellow-400 bg-yellow-50 rounded-lg text-yellow-900 max-w-xl",
+  children: v.jsxs("p", {
+    children: [
+      "Le serveur de questions est actuellement indisponible. Vous pouvez envoyer votre question via Google Forms ",
+      v.jsx("a", {
+        href: "https://forms.gle/rACVMYbFaRUGnTQJ7",
+        target: "_blank",
+        className: "underline font-semibold hover:text-yellow-700",
+        children: "ici",
       }),
-    }),
-  ],
-});
+      ".", // point final
+    ],
+  }),
+}); // <-- tout est fermé ici
+
 function SE({ q: n, selected: t, onSelect: s, onHide: i }) {
   return v.jsxs("div", {
     className: `p-4 rounded-lg border bg-card/50 animate-[fadeBounce_.5s_ease] glitch-in ${
