@@ -25434,7 +25434,7 @@ function kE() {
       children: [
         v.jsx("h1", {
           className: "text-4xl heading font-extrabold mb-12 text-center",
-          children: "Reportages & Teasers",
+          children: "Reportages",
         }),
 
         videos.map((video, index) =>
