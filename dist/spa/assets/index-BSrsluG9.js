@@ -22049,74 +22049,70 @@ function Hk() {
       : null
   );
 }
-function createVideoTeaser() {
-  // Création du container
-  const container = document.createElement('div');
-  container.className = "relative w-full max-w-4xl mx-auto rounded-xl overflow-hidden ring-1 ring-border bg-black";
+function qk() {
+  const videoRef = React.useRef(null);
+  const [isMuted, setIsMuted] = React.useState(true);
 
-  // Création de la vidéo
-  const video = document.createElement('video');
-  video.src = "dist/spa/teaser EMC.mp4";
-  video.autoplay = true;
-  video.loop = true;
-  video.muted = true;
-  video.playsInline = true;
-  video.className = "w-full h-full aspect-video object-cover";
-  container.appendChild(video);
+  function toggleSound() {
+    if (!videoRef.current) return;
+    const newMuted = !isMuted;
+    videoRef.current.muted = newMuted;
+    setIsMuted(newMuted);
+  }
 
-  // Création du bouton son
-  const soundButton = document.createElement('button');
-  soundButton.className = "absolute top-3 right-3 inline-flex items-center justify-center h-10 w-10 rounded-full bg-black/60 text-white backdrop-blur active:scale-95 transition";
-  soundButton.setAttribute('aria-label', 'Activer le son');
-  soundButton.innerHTML = `
-    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M11 5L6 9H3v6h3l5 4V5z"/>
-      <path d="M19 5l-6 6"/>
-      <path d="M19 11l-6 6"/>
-    </svg>
-  `;
-  let isMuted = true;
-  soundButton.onclick = () => {
-    isMuted = !isMuted;
-    video.muted = isMuted;
-    soundButton.setAttribute('aria-label', isMuted ? 'Activer le son' : 'Couper le son');
-    // changer l'icône
-    soundButton.innerHTML = isMuted
-      ? `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-           <path d="M11 5L6 9H3v6h3l5 4V5z"/>
-           <path d="M19 5l-6 6"/>
-           <path d="M19 11l-6 6"/>
-         </svg>`
-      : `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-           <path d="M11 5L6 9H3v6h3l5 4V5z"/>
-           <path d="M15.54 8.46a5 5 0 010 7.07"/>
-           <path d="M19.07 4.93a10 10 0 010 14.14"/>
-         </svg>`;
-  };
-  container.appendChild(soundButton);
-
-  // Création du bouton plein écran
-  const fsButton = document.createElement('button');
-  fsButton.className = "absolute top-3 right-16 inline-flex items-center justify-center h-10 w-10 rounded-full bg-black/60 text-white backdrop-blur active:scale-95 transition";
-  fsButton.setAttribute('aria-label', 'Plein écran');
-  fsButton.innerHTML = `
-    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M4 4h6v2H6v4H4V4zM20 4h-6v2h4v4h2V4zM4 20h6v-2H6v-4H4v6zM20 20h-6v-2h4v-4h2v6z"/>
-    </svg>
-  `;
-  fsButton.onclick = () => {
+  function goFullScreen() {
+    const video = videoRef.current;
+    if (!video) return;
     if (video.requestFullscreen) video.requestFullscreen();
     else if (video.webkitRequestFullscreen) video.webkitRequestFullscreen();
     else if (video.msRequestFullscreen) video.msRequestFullscreen();
-  };
-  container.appendChild(fsButton);
+  }
 
-  // Ajout du container au body (ou à un élément spécifique)
-  document.body.appendChild(container);
+  return (
+    <div className="relative w-full max-w-4xl mx-auto rounded-xl overflow-hidden ring-1 ring-border bg-black">
+      <video
+        ref={videoRef}
+        className="w-full h-full aspect-video object-cover"
+        src="dist/spa/teaser EMC.mp4"
+        autoPlay
+        muted={true}
+        loop
+        playsInline
+      />
+      {/* Bouton son */}
+      <button
+        onClick={toggleSound}
+        className="absolute top-3 right-3 inline-flex items-center justify-center h-10 w-10 rounded-full bg-black/60 text-white backdrop-blur active:scale-95 transition"
+        aria-label={isMuted ? "Activer le son" : "Couper le son"}
+      >
+        {isMuted ? (
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M11 5L6 9H3v6h3l5 4V5z" />
+            <path d="M19 5l-6 6" />
+            <path d="M19 11l-6 6" />
+          </svg>
+        ) : (
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M11 5L6 9H3v6h3l5 4V5z" />
+            <path d="M15.54 8.46a5 5 0 010 7.07M19.07 4.93a10 10 0 010 14.14" />
+          </svg>
+        )}
+      </button>
+
+      {/* Bouton plein écran */}
+      <button
+        onClick={goFullScreen}
+        className="absolute top-3 right-16 inline-flex items-center justify-center h-10 w-10 rounded-full bg-black/60 text-white backdrop-blur active:scale-95 transition"
+        aria-label="Plein écran"
+      >
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M4 4h6v2H6v4H4V4zM20 4h-6v2h4v4h2V4zM4 20h6v-2H6v-4H4v6zM20 20h-6v-2h4v-4h2v6z" />
+        </svg>
+      </button>
+    </div>
+  );
 }
 
-// Appeler la fonction pour créer le teaser
-createVideoTeaser();
 function Qk() {
   const n = "Au cœur de l'urgence, au cœur du débat.",
     [t, s] = k.useState(""),
