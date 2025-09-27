@@ -25410,59 +25410,81 @@ function rm() {
   );
 }
 function kE() {
+  const videos = [
+    {
+      title: "Reportage : Lohann Thonnon Varenne & Jessy Bouvet",
+      text: "Plongée immersive dans le quotidien de nos intervenants : portraits, parcours et moments marquants.",
+      src: null, // lien vidéo à mettre ici ou null si pas dispo
+    },
+    {
+      title: "Teaser EMC",
+      text: "Découvrez notre teaser officiel pour avoir un avant-goût de nos contenus.",
+      src: "https://ghxtmyhaueoszauzvbfh.supabase.co/storage/v1/object/sign/media/teaser_EMC.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zOWVmNjljMi00NTc1LTQwNjItOGY0Yy1mNDIzMGVmZTliY2EiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZWRpYS90ZWFzZXJfRU1DLm1wNCIsImlhdCI6MTc1ODk3MTUyOSwiZXhwIjoxNzkwNTA3NTI5fQ.C4FGWQGMeVm_T2qEhZ6KvJtOt5UUEjWAG8qGe9-qJHA",
+    },
+    {
+      title: "Événements forts du débat",
+      text: "Revivez les moments clés et les échanges les plus marquants de notre débat.",
+      src: null, // lien vidéo à mettre ici ou null si pas dispo
+    },
+  ];
+
   return v.jsx(ls, {
     children: v.jsxs("section", {
       className: "container mx-auto px-4 py-10",
       children: [
         v.jsx("h1", {
-          className: "text-4xl heading font-extrabold",
-          children: "Reportages : Plongée au cœur de la crise",
+          className: "text-4xl heading font-extrabold mb-8",
+          children: "Reportages & Teasers",
         }),
-        v.jsx("div", {
-          className: "reveal mt-2 text-muted-foreground",
-          children: "Découvrez nos sujets avec un regard de terrain.",
-        }),
-        v.jsxs("div", {
-          className:
-            "reveal mt-6 grid md:grid-cols-[2fr,1fr] gap-6 items-start",
-          children: [
-            v.jsxs("div", {
-              className:
-                "w-full aspect-video rounded-xl overflow-hidden ring-1 ring-border bg-black relative",
-              children: [
-                v.jsx("div", {
-                  className:
-                    "absolute inset-0 bg-[radial-gradient(600px_300px_at_80%_-20%,rgba(230,57,70,0.15),transparent)] pointer-events-none",
-                }),
-                v.jsx("iframe", {
-                  className: "w-full h-full",
-                  src: "https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1",
-                  title: "Reportage : La réalité des urgences",
-                  allow:
-                    "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
-                  allowFullScreen: !0,
-                }),
-              ],
-            }),
-            v.jsxs("div", {
+        videos.map((video, index) =>
+          v.jsxs(
+            "div",
+            {
+              className: "reveal mb-12",
               children: [
                 v.jsx("h2", {
-                  className: "text-2xl font-bold",
-                  children: "La réalité des urgences",
+                  className: "text-2xl font-bold mb-2",
+                  children: video.title,
                 }),
                 v.jsx("p", {
-                  className: "text-muted-foreground mt-2",
-                  children:
-                    "Plongée au cœur des services d’urgences: témoignages des soignants, parcours des patients, et défis quotidiens. Contenu vidéo de démonstration.",
+                  className: "text-muted-foreground mb-4",
+                  children: video.text,
                 }),
+                video.src
+                  ? v.jsxs("div", {
+                      className:
+                        index === 1
+                          ? "relative w-full max-w-4xl mx-auto rounded-xl overflow-hidden ring-1 ring-border bg-black" // teaser
+                          : "w-full aspect-video rounded-xl overflow-hidden ring-1 ring-border bg-black",
+                      children: [
+                        index === 1
+                          ? v.jsx(qk, {}) // teaser identique à l'accueil
+                          : v.jsx("video", {
+                              className: "w-full h-full aspect-video object-cover",
+                              src: video.src,
+                              autoPlay: false,
+                              controls: true,
+                              muted: false,
+                              loop: false,
+                              playsInline: true,
+                            }),
+                      ],
+                    })
+                  : v.jsx("div", {
+                      className:
+                        "w-full aspect-video flex items-center justify-center rounded-xl border border-gray-300 bg-gray-100 text-gray-500 text-lg font-semibold",
+                      children: "Vidéo à venir",
+                    }),
               ],
-            }),
-          ],
-        }),
+            },
+            index
+          )
+        ),
       ],
     }),
   });
 }
+
 function EE() {
   return v.jsx(ls, {
     children: v.jsxs("section", {
