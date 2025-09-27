@@ -22065,7 +22065,7 @@ function qk() {
       v.jsx("video", {
         ref: n,
         className: "w-full h-full aspect-video object-cover",
-        src: "dist/spa/teaser_EMC.mp4",  // <-- remplacé l'ancien lien par ton teaser
+        src: "https://streamable.com/jcdzmh",  // <-- remplacé l'ancien lien par ton teaser
         autoPlay: !0,
         muted: !0,
         loop: !0,
