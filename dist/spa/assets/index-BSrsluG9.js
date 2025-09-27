@@ -19630,7 +19630,7 @@ function GS() {
   const s = [
     {
     title: "Le blocage hospitalier",
-desc: "36 % des patients de plus de 75 ans passent plus de 8 heures aux urgences.\n La pénurie de lits accentue la perte de chances pour les plus fragiles. \n* (Source : DREES, 2025) *",
+desc: "36 % des patients de plus de 75 ans passent plus de 8 heures aux urgences.\n La pénurie de lits accentue la perte de chances pour les plus fragiles. \n (Source : DREES, 2025) ",
 svg: v.jsxs("svg", {
   viewBox: "0 0 300 140",
   className: "w-full h-40",
@@ -19713,7 +19713,7 @@ svg: v.jsxs("svg", {
     },
     {
      title: "La crise des lits",
-desc: "-11 % de capacités d’hospitalisation entre 2013 et 2023.\nPrès de 43 000 lits supprimés, au cœur de la saturation des services. \n* (Source : Assemblée nationale, 2024) *",
+desc: "-11 % de capacités d’hospitalisation entre 2013 et 2023.\nPrès de 43 000 lits supprimés, au cœur de la saturation des services. \n (Source : Assemblée nationale, 2024) ",
 svg: v.jsxs("svg", {
   viewBox: "0 0 300 140",
   className: "w-full h-40",
@@ -19742,7 +19742,7 @@ svg: v.jsxs("svg", {
     },
     {
      title: "Les oubliés du rural",
-desc: "21 % des passages aux urgences sont dus à l’absence de médecins de ville.\nLes territoires isolés, comme la Nièvre, sont particulièrement touchés.\n* (Source : Vie publique, janvier 2025) *",
+desc: "21 % des passages aux urgences sont dus à l’absence de médecins de ville.\nLes territoires isolés, comme la Nièvre, sont particulièrement touchés.\n (Source : Vie publique, janvier 2025) ",
 svg: v.jsxs("svg", {
   viewBox: "0 0 300 140",
   className: "w-full h-40",
