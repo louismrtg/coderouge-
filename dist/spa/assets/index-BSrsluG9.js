@@ -19627,163 +19627,40 @@ function GS() {
   k.useEffect(() => {
     t && t.reInit();
   }, [t]);
-  const s = [
-    {
-    title: "Le blocage hospitalier",
-desc: "36 % des patients de plus de 75 ans passent plus de 8 heures aux urgences.\n La pénurie de lits accentue la perte de chances pour les plus fragiles. \n (Source : DREES, 2025) ",
-svg: v.jsxs("svg", {
-  viewBox: "0 0 300 140",
-  className: "w-full h-40",
-  children: [
-    v.jsx("defs", {
-      children: v.jsxs("linearGradient", {
-        id: "g1",
-        x1: "0",
-        x2: "1",
-        children: [
-          v.jsx("stop", { offset: "0%", stopColor: "#60a5fa" }),
-          v.jsx("stop", { offset: "100%", stopColor: "#93c5fd" }),
 
-              ],
-            }),
-          }),
-          v.jsx("rect", {
-            x: "0",
-            y: "0",
-            width: "300",
-            height: "140",
-            fill: "url(#g1)",
-            rx: "12",
-          }),
-          v.jsxs("g", {
-            fill: "#fff",
-            opacity: "0.9",
-            children: [
-              v.jsx("rect", {
-                x: "20",
-                y: "40",
-                width: "80",
-                height: "50",
-                rx: "8",
-              }),
-              v.jsx("rect", {
-                x: "120",
-                y: "30",
-                width: "60",
-                height: "70",
-                rx: "8",
-              }),
-              v.jsx("rect", {
-                x: "200",
-                y: "50",
-                width: "80",
-                height: "40",
-                rx: "8",
-              }),
-            ],
-          }),
-          v.jsxs("g", {
-            fill: "#ef4444",
-            children: [
-              v.jsx("rect", {
-                x: "35",
-                y: "55",
-                width: "50",
-                height: "8",
-                rx: "4",
-              }),
-              v.jsx("rect", {
-                x: "135",
-                y: "55",
-                width: "30",
-                height: "8",
-                rx: "4",
-              }),
-              v.jsx("rect", {
-                x: "220",
-                y: "65",
-                width: "40",
-                height: "8",
-                rx: "4",
-              }),
-            ],
-          }),
-        ],
+  const s = [
+    // === Slide 1 ===
+    {
+      title: "Le blocage hospitalier",
+      desc: "36 % des patients de plus de 75 ans passent plus de 8 heures aux urgences.\n La pénurie de lits accentue la perte de chances pour les plus fragiles. \n (Source : DREES, 2025) ",
+      image: v.jsx("img", {
+        src: "/2.png",
+        alt: "Le blocage hospitalier",
+        className: "w-full h-40 object-cover rounded-xl"
       }),
     },
+    // === Slide 2 ===
     {
-     title: "La crise des lits",
-desc: "-11 % de capacités d’hospitalisation entre 2013 et 2023.\nPrès de 43 000 lits supprimés, au cœur de la saturation des services. \n (Source : Assemblée nationale, 2024) ",
-svg: v.jsxs("svg", {
-  viewBox: "0 0 300 140",
-  className: "w-full h-40",
-  children: [
-    v.jsx("rect", {
-      x: "0",
-      y: "0",
-      width: "300",
-      height: "140",
-      rx: "12",
-      fill: "#0ea5e9",
-    }),
-          v.jsx("circle", { cx: "80", cy: "70", r: "30", fill: "#bae6fd" }),
-          v.jsx("circle", { cx: "150", cy: "70", r: "30", fill: "#7dd3fc" }),
-          v.jsx("circle", { cx: "220", cy: "70", r: "30", fill: "#38bdf8" }),
-          v.jsx("rect", {
-            x: "70",
-            y: "62",
-            width: "160",
-            height: "16",
-            rx: "8",
-            fill: "#ef4444",
-          }),
-        ],
+      title: "La crise des lits",
+      desc: "-11 % de capacités d’hospitalisation entre 2013 et 2023.\nPrès de 43 000 lits supprimés, au cœur de la saturation des services. \n (Source : Assemblée nationale, 2024) ",
+      image: v.jsx("img", {
+        src: "/1.png",
+        alt: "La crise des lits",
+        className: "w-full h-40 object-cover rounded-xl"
       }),
     },
+    // === Slide 3 ===
     {
-     title: "Les oubliés du rural",
-desc: "21 % des passages aux urgences sont dus à l’absence de médecins de ville.\nLes territoires isolés, comme la Nièvre, sont particulièrement touchés.\n (Source : Vie publique, janvier 2025) ",
-svg: v.jsxs("svg", {
-  viewBox: "0 0 300 140",
-  className: "w-full h-40",
-        children: [
-          v.jsx("rect", {
-            x: "0",
-            y: "0",
-            width: "300",
-            height: "140",
-            rx: "12",
-            fill: "#f59e0b",
-          }),
-          v.jsx("rect", {
-            x: "20",
-            y: "30",
-            width: "260",
-            height: "80",
-            rx: "10",
-            fill: "#fff",
-            opacity: "0.9",
-          }),
-          v.jsx("rect", {
-            x: "40",
-            y: "50",
-            width: "80",
-            height: "12",
-            rx: "6",
-            fill: "#ef4444",
-          }),
-          v.jsx("rect", {
-            x: "40",
-            y: "70",
-            width: "160",
-            height: "12",
-            rx: "6",
-            fill: "#0ea5e9",
-          }),
-        ],
+      title: "Les oubliés du rural",
+      desc: "21 % des passages aux urgences sont dus à l’absence de médecins de ville.\nLes territoires isolés, comme la Nièvre, sont particulièrement touchés.\n (Source : Vie publique, janvier 2025) ",
+      image: v.jsx("img", {
+        src: "/3.png",
+        alt: "Les oubliés du rural",
+        className: "w-full h-40 object-cover rounded-xl"
       }),
     },
   ];
+
   return v.jsx("div", {
     className: "embla rounded-xl ring-1 ring-border",
     children: v.jsx("div", {
@@ -19798,7 +19675,8 @@ svg: v.jsxs("svg", {
               className:
                 "embla__slide p-6 grid md:grid-cols-[1fr,2fr] gap-6 items-center",
               children: [
-                v.jsx("div", { children: i.svg }),
+                // ✅ MODIFICATION FINALE ICI
+                v.jsx("div", { children: i.image }), // Changé de i.svg à i.image
                 v.jsxs("div", {
                   children: [
                     v.jsx("h3", {
