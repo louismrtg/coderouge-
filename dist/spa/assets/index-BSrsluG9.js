@@ -19489,14 +19489,20 @@ const ZS = {
   stopOnLastSnap: !1,
   rootNode: null,
 };
+// =================== Fonctions Utilitaires ===================
+
 function KS(n, t) {
   const s = n.scrollSnapList();
   return typeof t == "number" ? s.map(() => t) : t(s, n);
 }
+
 function YS(n, t) {
   const s = n.rootNode();
   return (t && t(s)) || s;
 }
+
+// =================== Plugin Autoplay (Jc) ===================
+
 function Jc(n = {}) {
   let t,
     s,
@@ -19508,112 +19514,110 @@ function Jc(n = {}) {
     p = !1,
     m = !1,
     g = !1;
+
   function x(V, ge) {
     s = V;
-    const { mergeOptions: ae, optionsAtMedia: ne } = ge,
-      F = ae(ZS, Jc.globalOptions),
-      z = ae(F, n);
+    const { mergeOptions: ae, optionsAtMedia: ne } = ge;
+    // NOTE: ZS est probablement une variable définie ailleurs dans votre code.
+    const F = ae(ZS, Jc.globalOptions); 
+    const z = ae(F, n);
     if (((t = ne(z)), s.scrollSnapList().length <= 1)) return;
     (g = t.jump), (i = !1), (a = KS(s, t.delay));
-    const { eventStore: W, ownerDocument: P } = s.internalEngine(),
-      D = !!s.internalEngine().options.watchDrag,
-      J = YS(s, t.rootNode);
-    W.add(P, "visibilitychange", T),
-      D && s.on("pointerDown", A),
-      D && !t.stopOnInteraction && s.on("pointerUp", M),
-      t.stopOnMouseEnter && W.add(J, "mouseenter", B),
-      t.stopOnMouseEnter && !t.stopOnInteraction && W.add(J, "mouseleave", U),
-      t.stopOnFocusIn && s.on("slideFocusStart", b),
-      t.stopOnFocusIn &&
-        !t.stopOnInteraction &&
-        W.add(s.containerNode(), "focusout", _),
-      t.playOnInit && _();
+    const { eventStore: W, ownerDocument: P } = s.internalEngine();
+    const D = !!s.internalEngine().options.watchDrag;
+    const J = YS(s, t.rootNode);
+    W.add(P, "visibilitychange", T);
+    D && s.on("pointerDown", A);
+    D && !t.stopOnInteraction && s.on("pointerUp", M);
+    t.stopOnMouseEnter && W.add(J, "mouseenter", B);
+    t.stopOnMouseEnter && !t.stopOnInteraction && W.add(J, "mouseleave", U);
+    t.stopOnFocusIn && s.on("slideFocusStart", b);
+    t.stopOnFocusIn && !t.stopOnInteraction && W.add(s.containerNode(), "focusout", _);
+    t.playOnInit && _();
   }
- function S() {
-    s.off("pointerDown", A).off("pointerUp", M).off("slideFocusStart", b),
-      b(),
-      (i = !0),
-      (f = !1);
+
+  function S() {
+    s.off("pointerDown", A).off("pointerUp", M).off("slideFocusStart", b);
+    b();
+    i = !0;
+    f = !1;
   }
+
   function w() {
     const { ownerWindow: V } = s.internalEngine();
-    V.clearTimeout(c),
-      (c = V.setTimeout(se, a[s.selectedScrollSnap()])),
-      (u = new Date().getTime()),
-      s.emit("autoplay:timerset");
+    V.clearTimeout(c);
+    c = V.setTimeout(se, a[s.selectedScrollSnap()]);
+    u = new Date().getTime();
+    s.emit("autoplay:timerset");
   }
+
   function E() {
     const { ownerWindow: V } = s.internalEngine();
-    V.clearTimeout(c), (c = 0), (u = null), s.emit("autoplay:timerstopped");
+    V.clearTimeout(c);
+    c = 0;
+    u = null;
+    s.emit("autoplay:timerstopped");
   }
+
   function _() {
     if (!i) {
       if (N()) {
         m = !0;
         return;
       }
-      f || s.emit("autoplay:play"), w(), (f = !0);
+      f || s.emit("autoplay:play");
+      w();
+      f = !0;
     }
   }
+
   function b() {
     i || (f && s.emit("autoplay:stop"), E(), (f = !1));
   }
+
   function T() {
     if (N()) return (m = f), b();
     m && _();
   }
+
   function N() {
     const { ownerDocument: V } = s.internalEngine();
     return V.visibilityState === "hidden";
   }
-  function A() {
-    p || b();
-  }
-  function M() {
-    p || _();
-  }
-  function B() {
-    (p = !0), b();
-  }
-  function U() {
-    (p = !1), _();
-  }
-  function $(V) {
-    typeof V < "u" && (g = V), _();
-  }
-  function K() {
-    f && b();
-  }
-  function te() {
-    f && _();
-  }
-  function re() {
-    return f;
-  }
+
+  function A() { p || b(); }
+  function M() { p || _(); }
+  function B() { (p = !0), b(); }
+  function U() { (p = !1), _(); }
+  function $(V) { typeof V < "u" && (g = V); _(); }
+  function K() { f && b(); }
+  function te() { f && _(); }
+  function re() { return f; }
+
   function se() {
-    const { index: V } = s.internalEngine(),
-      ge = V.clone().add(1).get(),
-      ae = s.scrollSnapList().length - 1,
-      ne = t.stopOnLastSnap && ge === ae;
-    if (
-      (s.canScrollNext() ? s.scrollNext(g) : s.scrollTo(0, g),
-        s.emit("autoplay:select"),
-        ne)
-    )
-      return b();
+    const { index: V } = s.internalEngine();
+    const ge = V.clone().add(1).get();
+    const ae = s.scrollSnapList().length - 1;
+    const ne = t.stopOnLastSnap && ge === ae;
+    s.canScrollNext() ? s.scrollNext(g) : s.scrollTo(0, g);
+    s.emit("autoplay:select");
+    if (ne) return b();
     _();
   }
+
   function X() {
     if (!u) return null;
-    const V = a[s.selectedScrollSnap()],
-      ge = new Date().getTime() - u;
+    const V = a[s.selectedScrollSnap()];
+    const ge = new Date().getTime() - u;
     return V - ge;
   }
-  // ... (Je suppose que d'autres variables comme i, f, p, etc. sont définies ici)
+
+  // Le return de la fonction Jc est ici. L'erreur se produit si le parser
+  // pense que la fonction Jc est déjà fermée à cause d'une accolade en trop.
   return {
     name: "autoplay",
     options: n,
-    init: x, // 'x' doit être défini quelque part dans votre code original
+    init: x,
     destroy: S,
     play: $,
     stop: K,
@@ -19621,9 +19625,11 @@ function Jc(n = {}) {
     isPlaying: re,
     timeUntilNext: X,
   };
-}
+} // <-- ✅ L'accolade qui ferme la fonction Jc est ici. C'est un point critique.
 
 Jc.globalOptions = void 0;
+
+// =================== Composant React (GS) ===================
 
 function GS() {
   const [n, t] = Xc({ loop: !0 }, [Jc({ delay: 4e3 })]);
@@ -19634,47 +19640,28 @@ function GS() {
   const s = [
     {
       title: "Le blocage hospitalier",
-      // ✅ FIX 1: Les descriptions sont maintenant des éléments JSX pour une mise en page correcte.
       desc: v.jsxs(v.Fragment, {
-        children: [
-          "36 % des patients de plus de 75 ans passent plus de 8 heures aux urgences.",
-          v.jsx("br", {}),
-          " La pénurie de lits accentue la perte de chances pour les plus fragiles. ",
-          v.jsx("br", {}),
-          v.jsx("em", { children: " (Source : DREES, 2025) " }),
-        ],
+        children: [ "36 % des patients de plus de 75 ans passent plus de 8 heures aux urgences.", v.jsx("br", {}), " La pénurie de lits accentue la perte de chances pour les plus fragiles. ", v.jsx("br", {}), v.jsx("em", { children: " (Source : DREES, 2025) " })],
       }),
-      svg: v.jsxs("svg", { /* ... contenu svg ... */ }),
+      svg: v.jsxs("svg", { /* contenu svg masqué pour la lisibilité */ }),
     },
     {
       title: "La crise des lits",
       desc: v.jsxs(v.Fragment, {
-        children: [
-          "-11 % de capacités d’hospitalisation entre 2013 et 2023.",
-          v.jsx("br", {}),
-          "Près de 43 000 lits supprimés, au cœur de la saturation des services. ",
-          v.jsx("br", {}),
-          v.jsx("em", { children: " (Source : Assemblée nationale, 2024) " }),
-        ],
+        children: [ "-11 % de capacités d’hospitalisation entre 2013 et 2023.", v.jsx("br", {}), "Près de 43 000 lits supprimés, au cœur de la saturation des services. ", v.jsx("br", {}), v.jsx("em", { children: " (Source : Assemblée nationale, 2024) " })],
       }),
-      svg: v.jsxs("svg", { /* ... contenu svg ... */ }),
+      svg: v.jsxs("svg", { /* contenu svg masqué */ }),
     },
     {
       title: "Les oubliés du rural",
       desc: v.jsxs(v.Fragment, {
-        children: [
-          "21 % des passages aux urgences sont dus à l’absence de médecins de ville. ",
-          v.jsx("br", {}),
-          " Les territoires isolés, comme la Nièvre, sont particulièrement touchés. ",
-          v.jsx("br", {}),
-          v.jsx("em", { children: " (Source : Vie publique, janvier 2025) " }),
-        ],
+        children: [ "21 % des passages aux urgences sont dus à l’absence de médecins de ville. ", v.jsx("br", {}), " Les territoires isolés, comme la Nièvre, sont particulièrement touchés. ", v.jsx("br", {}), v.jsx("em", { children: " (Source : Vie publique, janvier 2025) " })],
       }),
-      svg: v.jsxs("svg", { /* ... contenu svg ... */ }),
+      svg: v.jsxs("svg", { /* contenu svg masqué */ }),
     },
   ];
 
-  // ✅ FIX 2: Le 'return' du composant est maintenant à l'intérieur de la fonction GS.
+  // Le return du composant GS. Il est bien à l'intérieur de la fonction.
   return v.jsx("div", {
     className: "embla rounded-xl ring-1 ring-border",
     children: v.jsx("div", {
@@ -19683,35 +19670,23 @@ function GS() {
       children: v.jsx("div", {
         className: "embla__container",
         children: s.map((i) =>
-          v.jsxs(
-            "div",
-            {
-              className: "embla__slide p-6 grid md:grid-cols-[1fr,2fr] gap-6 items-center",
-              children: [
-                v.jsx("div", { children: i.svg }),
-                v.jsxs("div", {
-                  children: [
-                    v.jsx("h3", {
-                      className: "text-2xl font-bold",
-                      children: i.title,
-                    }),
-                    v.jsx("p", {
-                      className: "text-muted-foreground mt-2",
-                      children: i.desc,
-                    }),
-                  ],
-                }),
-              ],
-            },
-            i.title
-          )
+          v.jsxs("div", {
+            className: "embla__slide p-6 grid md:grid-cols-[1fr,2fr] gap-6 items-center",
+            children: [
+              v.jsx("div", { children: i.svg }),
+              v.jsxs("div", {
+                children: [
+                  v.jsx("h3", { className: "text-2xl font-bold", children: i.title }),
+                  v.jsx("p", { className: "text-muted-foreground mt-2", children: i.desc }),
+                ],
+              }),
+            ],
+          }, i.title)
         ),
       }),
     }),
   });
-}
-
-// NOTE: Le reste de votre code, qui semble indépendant des fonctions ci-dessus.
+} // <-- ✅ L'accolade qui ferme la fonction GS est ici. C'est le deuxième point critique.
 const Bn = Object.create(null);
 Bn.open = "0";
 Bn.close = "1";
