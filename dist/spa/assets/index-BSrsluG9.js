@@ -19629,21 +19629,21 @@ function GS() {
   }, [t]);
   const s = [
     {
-      title: "Le blocage hospitalier",
-      desc: "36 % des patients de plus de 75 ans passent plus de 8 heures aux urgences. 
-        👉 La pénurie de lits accentue la perte de chances pour les plus fragiles. (Source : DREES, 2025)",
-      svg: v.jsxs("svg", {
-        viewBox: "0 0 300 140",
-        className: "w-full h-40",
+    title: "Le blocage hospitalier",
+desc: "36 % des patients de plus de 75 ans passent plus de 8 heures aux urgences.\n La pénurie de lits accentue la perte de chances pour les plus fragiles. \n* (Source : DREES, 2025) *",
+svg: v.jsxs("svg", {
+  viewBox: "0 0 300 140",
+  className: "w-full h-40",
+  children: [
+    v.jsx("defs", {
+      children: v.jsxs("linearGradient", {
+        id: "g1",
+        x1: "0",
+        x2: "1",
         children: [
-          v.jsx("defs", {
-            children: v.jsxs("linearGradient", {
-              id: "g1",
-              x1: "0",
-              x2: "1",
-              children: [
-                v.jsx("stop", { offset: "0%", stopColor: "#60a5fa" }),
-                v.jsx("stop", { offset: "100%", stopColor: "#93c5fd" }),
+          v.jsx("stop", { offset: "0%", stopColor: "#60a5fa" }),
+          v.jsx("stop", { offset: "100%", stopColor: "#93c5fd" }),
+
               ],
             }),
           }),
