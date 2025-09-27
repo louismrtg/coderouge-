@@ -25203,7 +25203,7 @@ return v.jsx(ls, {
       v.jsxs("h1", {
         className:
           "text-3xl md:text-5xl heading font-extrabold flex items-center gap-2 cursor-pointer",
-        onClick: () => window.history.back(), // <- flèche cliquable
+        onClick: () => window.history.back(),
         children: [
           v.jsxs("svg", {
             width: "28",
@@ -25228,32 +25228,25 @@ return v.jsx(ls, {
           "Partagez votre expérience ou interrogez nos invités. Les questions pertinentes peuvent apparaître en direct à l'écran.",
       }),
 
-      // Formulaire de questions
+      // Formulaire
       v.jsxs("form", {
         onSubmit: c,
         className: "mt-8 grid gap-4 max-w-xl",
         children: [
           v.jsxs("div", {
             children: [
-              v.jsx("label", {
-                className: "block text-sm font-medium",
-                children: "Prénom",
-              }),
+              v.jsx("label", { className: "block text-sm font-medium", children: "Prénom" }),
               v.jsx("input", {
                 name: "firstName",
                 className: "mt-1 w-full input bg-transparent",
                 placeholder: "Votre prénom",
               }),
-              s.firstName &&
-                v.jsx("p", { className: "form-error", children: s.firstName }),
+              s.firstName && v.jsx("p", { className: "form-error", children: s.firstName }),
             ],
           }),
           v.jsxs("div", {
             children: [
-              v.jsx("label", {
-                className: "block text-sm font-medium",
-                children: "Votre question",
-              }),
+              v.jsx("label", { className: "block text-sm font-medium", children: "Votre question" }),
               v.jsx("textarea", {
                 name: "text",
                 className: "mt-1 w-full input h-32 bg-transparent",
@@ -25286,15 +25279,11 @@ return v.jsx(ls, {
                 }),
               ],
             }),
-          v.jsx("button", {
-            disabled: n,
-            className: "btn-primary",
-            children: n ? "Envoi..." : "Envoyer ma question",
-          }),
+          v.jsx("button", { disabled: n, className: "btn-primary", children: n ? "Envoi..." : "Envoyer ma question" }),
         ],
       }),
 
-      // Encadré Google Forms si le serveur est en panne
+      // Encadré Google Forms
       v.jsx("div", {
         className:
           "mt-6 p-4 border-2 border-yellow-400 bg-yellow-50 rounded-lg text-yellow-900 max-w-xl",
@@ -25314,7 +25303,6 @@ return v.jsx(ls, {
     ],
   }),
 });
-
 
 function SE({ q: n, selected: t, onSelect: s, onHide: i }) {
   return v.jsxs("div", {
