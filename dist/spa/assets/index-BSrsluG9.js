@@ -19636,7 +19636,7 @@ function GS() {
       desc:
         "36 % des patients de plus de 75 ans passent plus de 8 heures aux urgences.\nLa pénurie de lits accentue la perte de chances pour les plus fragiles.\n(Source : DREES, 2025)",
       image: v.jsx("img", {
-        src: "2.webp",
+        src: "https://ghxtmyhaueoszauzvbfh.supabase.co/storage/v1/object/sign/media/2.webp?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zOWVmNjljMi00NTc1LTQwNjItOGY0Yy1mNDIzMGVmZTliY2EiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZWRpYS8yLndlYnAiLCJpYXQiOjE3NTg5ODczOTQsImV4cCI6MTc5MDUyMzM5NH0.FXLDhazo82TMoc6NXqYOOfeQZQThLRfo66G6arPSpw0",
         alt: "Le blocage hospitalier",
         className: "w-full h-40 md:h-60 lg:h-72 object-cover rounded-xl block",
       }),
@@ -19647,7 +19647,7 @@ function GS() {
       desc:
         "-11 % de capacités d’hospitalisation entre 2013 et 2023.\nPrès de 43 000 lits supprimés, au cœur de la saturation des services.\n(Source : Assemblée nationale, 2024)",
       image: v.jsx("img", {
-        src: "1.webp",
+        src: "https://ghxtmyhaueoszauzvbfh.supabase.co/storage/v1/object/sign/media/1.webp?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zOWVmNjljMi00NTc1LTQwNjItOGY0Yy1mNDIzMGVmZTliY2EiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZWRpYS8xLndlYnAiLCJpYXQiOjE3NTg5ODczNzUsImV4cCI6MTc5MDUyMzM3NX0.u_z5-hd-wEYwwyfQpgQpnZ-kaZLTf2MyyCR0EL_VO4c",
         alt: "La crise des lits",
         className: "w-full h-40 md:h-60 lg:h-72 object-cover rounded-xl block",
       }),
@@ -19658,7 +19658,7 @@ function GS() {
       desc:
         "21 % des passages aux urgences sont dus à l’absence de médecins de ville.\nLes territoires isolés, comme la Nièvre, sont particulièrement touchés.\n(Source : Vie publique, janvier 2025)",
       image: v.jsx("img", {
-        src: "3.webp",
+        src: "https://ghxtmyhaueoszauzvbfh.supabase.co/storage/v1/object/sign/media/3.webp?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zOWVmNjljMi00NTc1LTQwNjItOGY0Yy1mNDIzMGVmZTliY2EiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZWRpYS8zLndlYnAiLCJpYXQiOjE3NTg5ODc0MTEsImV4cCI6MTc5MDUyMzQxMX0.uLdskK5NkNlm8vjjGVEyr92i-DmdhFG20_lE6LtGi78",
         alt: "Les oubliés du rural",
         className: "w-full h-40 md:h-60 lg:h-72 object-cover rounded-xl block",
       }),
@@ -19702,7 +19702,6 @@ function GS() {
     }),
   });
 }
-
 
 const Bn = Object.create(null);
 Bn.open = "0";
