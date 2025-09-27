@@ -25197,105 +25197,125 @@ function bE() {
   }
   return v.jsx(ls, {
     children: v.jsxs("section", {
-      className: "container mx-auto px-4 py-10",
+  className: "container mx-auto px-4 py-10",
+  children: [
+    // Titre avec flèche cliquable
+    v.jsxs("h1", {
+      className:
+        "text-3xl md:text-5xl heading font-extrabold flex items-center gap-2 cursor-pointer",
+      onClick: () => window.history.back(), // <- flèche cliquable
       children: [
-        v.jsxs("h1", {
-          className:
-            "text-3xl md:text-5xl heading font-extrabold flex items-center gap-2",
+        v.jsxs("svg", {
+          width: "28",
+          height: "28",
+          viewBox: "0 0 24 24",
+          fill: "none",
+          stroke: "currentColor",
+          strokeWidth: "2",
+          className: "text-primary",
           children: [
-            v.jsxs("svg", {
-              width: "28",
-              height: "28",
-              viewBox: "0 0 24 24",
-              fill: "none",
-              stroke: "currentColor",
-              strokeWidth: "2",
-              className: "text-primary",
-              children: [
-                v.jsx("path", { d: "M12 19l-7-7 7-7" }),
-                v.jsx("path", { d: "M5 12h14" }),
-              ],
-            }),
-            " Poser une question",
+            v.jsx("path", { d: "M12 19l-7-7 7-7" }),
+            v.jsx("path", { d: "M5 12h14" }),
           ],
         }),
-        v.jsx("p", {
-          className: "text-muted-foreground mt-3 max-w-2xl",
-          children:
-            "Partagez votre expérience ou interrogez nos invités. Les questions pertinentes peuvent apparaître en direct à l'écran.",
-        }),
-        v.jsxs("form", {
-          onSubmit: c,
-          className: "mt-8 grid gap-4 max-w-xl",
+        " Poser une question",
+      ],
+    }),
+
+    v.jsx("p", {
+      className: "text-muted-foreground mt-3 max-w-2xl",
+      children:
+        "Partagez votre expérience ou interrogez nos invités. Les questions pertinentes peuvent apparaître en direct à l'écran.",
+    }),
+
+    // Formulaire de questions
+    v.jsxs("form", {
+      onSubmit: c,
+      className: "mt-8 grid gap-4 max-w-xl",
+      children: [
+        v.jsxs("div", {
           children: [
-            v.jsxs("div", {
-              children: [
-                v.jsx("label", {
-                  className: "block text-sm font-medium",
-                  children: "Prénom",
-                }),
-                v.jsx("input", {
-                  name: "firstName",
-                  className: "mt-1 w-full input bg-transparent",
-                  placeholder: "Votre prénom",
-                }),
-                s.firstName &&
-                  v.jsx("p", {
-                    className: "form-error",
-                    children: s.firstName,
-                  }),
-              ],
+            v.jsx("label", {
+              className: "block text-sm font-medium",
+              children: "Prénom",
             }),
-            v.jsxs("div", {
-              children: [
-                v.jsx("label", {
-                  className: "block text-sm font-medium",
-                  children: "Votre question",
-                }),
-                v.jsx("textarea", {
-                  name: "text",
-                  className: "mt-1 w-full input h-32 bg-transparent",
-                  placeholder:
-                    "Formulez clairement votre question... !!! Serveur Internal ERROR !!! > Voir Google Forms",
-                }),
-                s.text &&
-                  v.jsx("p", { className: "form-error", children: s.text }),
-              ],
+            v.jsx("input", {
+              name: "firstName",
+              className: "mt-1 w-full input bg-transparent",
+              placeholder: "Votre prénom",
             }),
-            s.form && v.jsx("p", { className: "form-error", children: s.form }),
-            a &&
-              v.jsxs("div", {
-                className:
-                  "flex items-center gap-2 text-emerald-500 font-semibold animate-[fadeIn_.4s_ease]",
-                children: [
-                  v.jsx("svg", {
-                    width: "20",
-                    height: "20",
-                    viewBox: "0 0 24 24",
-                    fill: "none",
-                    stroke: "currentColor",
-                    strokeWidth: "3",
-                    strokeLinecap: "round",
-                    strokeLinejoin: "round",
-                    children: v.jsx("path", { d: "M20 6L9 17l-5-5" }),
-                  }),
-                  v.jsx("span", {
-                    children:
-                      "Votre question a été transmise au plateau ! Merci pour votre participation.",
-                  }),
-                ],
+            s.firstName &&
+              v.jsx("p", { className: "form-error", children: s.firstName }),
+          ],
+        }),
+        v.jsxs("div", {
+          children: [
+            v.jsx("label", {
+              className: "block text-sm font-medium",
+              children: "Votre question",
+            }),
+            v.jsx("textarea", {
+              name: "text",
+              className: "mt-1 w-full input h-32 bg-transparent",
+              placeholder:
+                "Formulez clairement votre question... !!! Serveur Internal ERROR !!! > Voir Google Forms",
+            }),
+            s.text && v.jsx("p", { className: "form-error", children: s.text }),
+          ],
+        }),
+        s.form && v.jsx("p", { className: "form-error", children: s.form }),
+        a &&
+          v.jsxs("div", {
+            className:
+              "flex items-center gap-2 text-emerald-500 font-semibold animate-[fadeIn_.4s_ease]",
+            children: [
+              v.jsx("svg", {
+                width: "20",
+                height: "20",
+                viewBox: "0 0 24 24",
+                fill: "none",
+                stroke: "currentColor",
+                strokeWidth: "3",
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                children: v.jsx("path", { d: "M20 6L9 17l-5-5" }),
               }),
-            v.jsx("button", {
-              disabled: n,
-              className: "btn-primary",
-              children: n ? "Envoi..." : "Envoyer ma question",
-            }),
-          ],
+              v.jsx("span", {
+                children:
+                  "Votre question a été transmise au plateau ! Merci pour votre participation.",
+              }),
+            ],
+          }),
+        v.jsx("button", {
+          disabled: n,
+          className: "btn-primary",
+          children: n ? "Envoi..." : "Envoyer ma question",
         }),
       ],
     }),
-  });
-}
+
+    // Encadré Google Forms si le serveur est en panne
+    v.jsx("div", {
+      className:
+        "mt-6 p-4 border-2 border-yellow-400 bg-yellow-50 rounded-lg text-yellow-900 max-w-xl",
+      children: v.jsxs("p", {
+        children: [
+          "Le serveur de questions est actuellement indisponible. Vous pouvez envoyer votre question via Google Forms ",
+          v.jsx(
+            "a",
+            {
+              href: "https://forms.gle/rACVMYbFaRUGnTQJ7",
+              target: "_blank",
+              className: "underline font-semibold hover:text-yellow-700",
+              children: "ici",
+            }
+          ),
+          ".",
+        ],
+      }),
+    }),
+  ],
+});
 function SE({ q: n, selected: t, onSelect: s, onHide: i }) {
   return v.jsxs("div", {
     className: `p-4 rounded-lg border bg-card/50 animate-[fadeBounce_.5s_ease] glitch-in ${
