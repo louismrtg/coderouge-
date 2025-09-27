@@ -22065,7 +22065,7 @@ function qk() {
       v.jsx("video", {
         ref: n,
         className: "w-full h-full aspect-video object-cover",
-        src: "dist/spa/teaser_EMC.mp4",  // <-- remplacé l'ancien lien par ton teaser
+        src: "https://ghxtmyhaueoszauzvbfh.supabase.co/storage/v1/object/sign/media/teaser_EMC.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zOWVmNjljMi00NTc1LTQwNjItOGY0Yy1mNDIzMGVmZTliY2EiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZWRpYS90ZWFzZXJfRU1DLm1wNCIsImlhdCI6MTc1ODk3MTUyOSwiZXhwIjoxNzkwNTA3NTI5fQ.C4FGWQGMeVm_T2qEhZ6KvJtOt5UUEjWAG8qGe9-qJHA",  // <-- remplacé l'ancien lien par ton teaser
         autoPlay: !0,
         muted: !0,
         loop: !0,
