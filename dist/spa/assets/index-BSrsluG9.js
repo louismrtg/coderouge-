@@ -19712,21 +19712,20 @@ svg: v.jsxs("svg", {
       }),
     },
     {
-      title: "La crise des lits",
-      desc: "-11 % de capacités d’hospitalisation entre 2013 et 2023. 
-        Près de 43 000 lits supprimés, au cœur de la saturation des services. (Source : Assemblée nationale, 2024)",
-      svg: v.jsxs("svg", {
-        viewBox: "0 0 300 140",
-        className: "w-full h-40",
-        children: [
-          v.jsx("rect", {
-            x: "0",
-            y: "0",
-            width: "300",
-            height: "140",
-            rx: "12",
-            fill: "#0ea5e9",
-          }),
+     title: "La crise des lits",
+desc: "-11 % de capacités d’hospitalisation entre 2013 et 2023.\nPrès de 43 000 lits supprimés, au cœur de la saturation des services. \n* (Source : Assemblée nationale, 2024) *",
+svg: v.jsxs("svg", {
+  viewBox: "0 0 300 140",
+  className: "w-full h-40",
+  children: [
+    v.jsx("rect", {
+      x: "0",
+      y: "0",
+      width: "300",
+      height: "140",
+      rx: "12",
+      fill: "#0ea5e9",
+    }),
           v.jsx("circle", { cx: "80", cy: "70", r: "30", fill: "#bae6fd" }),
           v.jsx("circle", { cx: "150", cy: "70", r: "30", fill: "#7dd3fc" }),
           v.jsx("circle", { cx: "220", cy: "70", r: "30", fill: "#38bdf8" }),
@@ -19742,12 +19741,11 @@ svg: v.jsxs("svg", {
       }),
     },
     {
-      title: "Les oubliés du rural",
-      desc: "21 % des passages aux urgences sont dus à l’absence de médecins de ville. 
-        Les territoires isolés, comme la Nièvre, sont particulièrement touchés. (Source : Vie publique, janvier 2025)",
-      svg: v.jsxs("svg", {
-        viewBox: "0 0 300 140",
-        className: "w-full h-40",
+     title: "Les oubliés du rural",
+desc: "21 % des passages aux urgences sont dus à l’absence de médecins de ville.\nLes territoires isolés, comme la Nièvre, sont particulièrement touchés.\n* (Source : Vie publique, janvier 2025) *",
+svg: v.jsxs("svg", {
+  viewBox: "0 0 300 140",
+  className: "w-full h-40",
         children: [
           v.jsx("rect", {
             x: "0",
