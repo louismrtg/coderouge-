@@ -19636,7 +19636,7 @@ function GS() {
       desc: [
         "36 % des patients de plus de 75 ans passent plus de 8 heures aux urgences.",
         "La pénurie de lits accentue la perte de chances pour les plus fragiles.",
-        <em key="src1">(Source : DREES, 2025)</em>
+        v.jsx("em", { key: "src1", children: "(Source : DREES, 2025)" }),
       ],
       image: v.jsx("img", {
         src: "https://ghxtmyhaueoszauzvbfh.supabase.co/storage/v1/object/public/media/2.webp",
@@ -19651,7 +19651,7 @@ function GS() {
       desc: [
         "-11 % de capacités d’hospitalisation entre 2013 et 2023.",
         "Près de 43 000 lits supprimés, au cœur de la saturation des services.",
-        <em key="src2">(Source : Assemblée nationale, 2024)</em>
+        v.jsx("em", { key: "src2", children: "(Source : Assemblée nationale, 2024)" }),
       ],
       image: v.jsx("img", {
         src: "https://ghxtmyhaueoszauzvbfh.supabase.co/storage/v1/object/public/media/1.webp",
@@ -19666,7 +19666,7 @@ function GS() {
       desc: [
         "21 % des passages aux urgences sont dus à l’absence de médecins de ville.",
         "Les territoires isolés, comme la Nièvre, sont particulièrement touchés.",
-        <em key="src3">(Source : Vie publique, janvier 2025)</em>
+        v.jsx("em", { key: "src3", children: "(Source : Vie publique, janvier 2025)" }),
       ],
       image: v.jsx("img", {
         src: "https://ghxtmyhaueoszauzvbfh.supabase.co/storage/v1/object/public/media/3.webp",
@@ -19692,19 +19692,12 @@ function GS() {
                 "embla__slide p-6 grid md:grid-cols-[1fr,2fr] gap-6 items-center min-w-[300px]",
               children: [
                 v.jsx("div", { children: i.image }),
-                v.jsxs("div", {
-                  children: [
-                    v.jsx("h3", {
-                      className: "text-2xl font-bold",
-                      children: i.title,
-                    }),
-                    v.jsx("p", {
-                      className: "text-muted-foreground mt-2 whitespace-pre-line",
-                      children: i.desc.map((line, idx) =>
-                        typeof line === "string" ? line + "\n" : line
-                      ),
-                    }),
-                  ],
+                v.jsx("div", {
+                  children: i.desc.map((line, idx) =>
+                    typeof line === "string"
+                      ? v.jsx("p", { key: idx, className: "text-muted-foreground mt-2 whitespace-pre-line", children: line })
+                      : line
+                  ),
                 }),
               ],
             },
@@ -19715,7 +19708,6 @@ function GS() {
     }),
   });
 }
-
 
 const Bn = Object.create(null);
 Bn.open = "0";
