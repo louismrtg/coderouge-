@@ -19629,21 +19629,30 @@ function GS() {
   }, [t]);
   const s = [
     {
-    title: "Le blocage hospitalier",
-desc: "36 % des patients de plus de 75 ans passent plus de 8 heures aux urgences.<br /> La pénurie de lits accentue la perte de chances pour les plus fragiles. <br /> <em> (Source : DREES, 2025) ",
-svg: v.jsxs("svg", {
-  viewBox: "0 0 300 140",
-  className: "w-full h-40",
-  children: [
-    v.jsx("defs", {
-      children: v.jsxs("linearGradient", {
-        id: "g1",
-        x1: "0",
-        x2: "1",
+      title: "Le blocage hospitalier",
+      // MODIFICATION ICI
+      desc: v.jsxs(v.Fragment, {
         children: [
-          v.jsx("stop", { offset: "0%", stopColor: "#60a5fa" }),
-          v.jsx("stop", { offset: "100%", stopColor: "#93c5fd" }),
-
+          "36 % des patients de plus de 75 ans passent plus de 8 heures aux urgences.",
+          v.jsx("br", {}),
+          " La pénurie de lits accentue la perte de chances pour les plus fragiles. ",
+          v.jsx("br", {}),
+          v.jsx("em", { children: " (Source : DREES, 2025) " }),
+        ],
+      }),
+      svg: v.jsxs("svg", {
+        viewBox: "0 0 300 140",
+        className: "w-full h-40",
+        children: [
+          /* ... contenu svg inchangé ... */
+          v.jsx("defs", {
+            children: v.jsxs("linearGradient", {
+              id: "g1",
+              x1: "0",
+              x2: "1",
+              children: [
+                v.jsx("stop", { offset: "0%", stopColor: "#60a5fa" }),
+                v.jsx("stop", { offset: "100%", stopColor: "#93c5fd" }),
               ],
             }),
           }),
@@ -19659,131 +19668,73 @@ svg: v.jsxs("svg", {
             fill: "#fff",
             opacity: "0.9",
             children: [
-              v.jsx("rect", {
-                x: "20",
-                y: "40",
-                width: "80",
-                height: "50",
-                rx: "8",
-              }),
-              v.jsx("rect", {
-                x: "120",
-                y: "30",
-                width: "60",
-                height: "70",
-                rx: "8",
-              }),
-              v.jsx("rect", {
-                x: "200",
-                y: "50",
-                width: "80",
-                height: "40",
-                rx: "8",
-              }),
+              v.jsx("rect", { x: "20", y: "40", width: "80", height: "50", rx: "8" }),
+              v.jsx("rect", { x: "120", y: "30", width: "60", height: "70", rx: "8" }),
+              v.jsx("rect", { x: "200", y: "50", width: "80", height: "40", rx: "8" }),
             ],
           }),
           v.jsxs("g", {
             fill: "#ef4444",
             children: [
-              v.jsx("rect", {
-                x: "35",
-                y: "55",
-                width: "50",
-                height: "8",
-                rx: "4",
-              }),
-              v.jsx("rect", {
-                x: "135",
-                y: "55",
-                width: "30",
-                height: "8",
-                rx: "4",
-              }),
-              v.jsx("rect", {
-                x: "220",
-                y: "65",
-                width: "40",
-                height: "8",
-                rx: "4",
-              }),
+              v.jsx("rect", { x: "35", y: "55", width: "50", height: "8", rx: "4" }),
+              v.jsx("rect", { x: "135", y: "55", width: "30", height: "8", rx: "4" }),
+              v.jsx("rect", { x: "220", y: "65", width: "40", height: "8", rx: "4" }),
             ],
           }),
         ],
       }),
     },
     {
-     title: "La crise des lits",
-desc: "-11 % de capacités d’hospitalisation entre 2013 et 2023.<br />Près de 43 000 lits supprimés, au cœur de la saturation des services. <br /> <em> (Source : Assemblée nationale, 2024) ",
-svg: v.jsxs("svg", {
-  viewBox: "0 0 300 140",
-  className: "w-full h-40",
-  children: [
-    v.jsx("rect", {
-      x: "0",
-      y: "0",
-      width: "300",
-      height: "140",
-      rx: "12",
-      fill: "#0ea5e9",
-    }),
+      title: "La crise des lits",
+      // MODIFICATION ICI
+      desc: v.jsxs(v.Fragment, {
+        children: [
+          "-11 % de capacités d’hospitalisation entre 2013 et 2023.",
+          v.jsx("br", {}),
+          "Près de 43 000 lits supprimés, au cœur de la saturation des services. ",
+          v.jsx("br", {}),
+          v.jsx("em", { children: " (Source : Assemblée nationale, 2024) " }),
+        ],
+      }),
+      svg: v.jsxs("svg", {
+        viewBox: "0 0 300 140",
+        className: "w-full h-40",
+        children: [
+          /* ... contenu svg inchangé ... */
+          v.jsx("rect", { x: "0", y: "0", width: "300", height: "140", rx: "12", fill: "#0ea5e9" }),
           v.jsx("circle", { cx: "80", cy: "70", r: "30", fill: "#bae6fd" }),
           v.jsx("circle", { cx: "150", cy: "70", r: "30", fill: "#7dd3fc" }),
           v.jsx("circle", { cx: "220", cy: "70", r: "30", fill: "#38bdf8" }),
-          v.jsx("rect", {
-            x: "70",
-            y: "62",
-            width: "160",
-            height: "16",
-            rx: "8",
-            fill: "#ef4444",
-          }),
+          v.jsx("rect", { x: "70", y: "62", width: "160", height: "16", rx: "8", fill: "#ef4444" }),
         ],
       }),
     },
     {
-     title: "Les oubliés du rural",
-desc: "21 % des passages aux urgences sont dus à l’absence de médecins de ville. <br /> Les territoires isolés, comme la Nièvre, sont particulièrement touchés. <br /> <em> (Source : Vie publique, janvier 2025) ",
-svg: v.jsxs("svg", {
-  viewBox: "0 0 300 140",
-  className: "w-full h-40",
+      title: "Les oubliés du rural",
+      // MODIFICATION ICI
+      desc: v.jsxs(v.Fragment, {
         children: [
-          v.jsx("rect", {
-            x: "0",
-            y: "0",
-            width: "300",
-            height: "140",
-            rx: "12",
-            fill: "#f59e0b",
-          }),
-          v.jsx("rect", {
-            x: "20",
-            y: "30",
-            width: "260",
-            height: "80",
-            rx: "10",
-            fill: "#fff",
-            opacity: "0.9",
-          }),
-          v.jsx("rect", {
-            x: "40",
-            y: "50",
-            width: "80",
-            height: "12",
-            rx: "6",
-            fill: "#ef4444",
-          }),
-          v.jsx("rect", {
-            x: "40",
-            y: "70",
-            width: "160",
-            height: "12",
-            rx: "6",
-            fill: "#0ea5e9",
-          }),
+          "21 % des passages aux urgences sont dus à l’absence de médecins de ville. ",
+          v.jsx("br", {}),
+          " Les territoires isolés, comme la Nièvre, sont particulièrement touchés. ",
+          v.jsx("br", {}),
+          v.jsx("em", { children: " (Source : Vie publique, janvier 2025) " }),
+        ],
+      }),
+      svg: v.jsxs("svg", {
+        viewBox: "0 0 300 140",
+        className: "w-full h-40",
+        children: [
+          /* ... contenu svg inchangé ... */
+          v.jsx("rect", { x: "0", y: "0", width: "300", height: "140", rx: "12", fill: "#f59e0b" }),
+          v.jsx("rect", { x: "20", y: "30", width: "260", height: "80", rx: "10", fill: "#fff", opacity: "0.9" }),
+          v.jsx("rect", { x: "40", y: "50", width: "80", height: "12", rx: "6", fill: "#ef4444" }),
+          v.jsx("rect", { x: "40", y: "70", width: "160", height: "12", rx: "6", fill: "#0ea5e9" }),
         ],
       }),
     },
   ];
+}
   return v.jsx("div", {
     className: "embla rounded-xl ring-1 ring-border",
     children: v.jsx("div", {
