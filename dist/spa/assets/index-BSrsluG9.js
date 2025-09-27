@@ -25241,7 +25241,7 @@ function bE() {
                 v.jsx("input", {
                   name: "firstName",
                   className: "mt-1 w-full input bg-transparent",
-                  placeholder: "Votre prénom",
+                  placeholder: "Votre prénom • ⚠️ !!! Serveur Internal ERROR !!! > Voir Google Forms",
                 }),
                 s.firstName && v.jsx("p", { className: "form-error", children: s.firstName }),
               ],
@@ -25253,7 +25253,7 @@ function bE() {
                   name: "text",
                   className: "mt-1 w-full input h-32 bg-transparent",
                   placeholder:
-                    "Formulez clairement votre question... !!! Serveur Internal ERROR !!! > Voir Google Forms",
+                    "Formulez clairement votre question... • ⚠️ !!! Serveur Internal ERROR !!! > Voir Google Forms",
                 }),
                 s.text && v.jsx("p", { className: "form-error", children: s.text }),
               ],
