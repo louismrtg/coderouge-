@@ -25215,17 +25215,17 @@ return v.jsx(ls, {
             className: "text-primary",
             children: [
               v.jsx("path", { d: "M12 19l-7-7 7-7" }),
-              v.jsx("path", { d: "M5 12h14" }),
-            ],
+              v.jsx("path", { d: "M5 12h14" })
+            ]
           }),
-          " Poser une question",
-        ],
+          " Poser une question"
+        ]
       }),
 
       v.jsx("p", {
         className: "text-muted-foreground mt-3 max-w-2xl",
         children:
-          "Partagez votre expérience ou interrogez nos invités. Les questions pertinentes peuvent apparaître en direct à l'écran.",
+          "Partagez votre expérience ou interrogez nos invités. Les questions pertinentes peuvent apparaître en direct à l'écran."
       }),
 
       // Formulaire
@@ -25239,10 +25239,10 @@ return v.jsx(ls, {
               v.jsx("input", {
                 name: "firstName",
                 className: "mt-1 w-full input bg-transparent",
-                placeholder: "Votre prénom",
+                placeholder: "Votre prénom"
               }),
-              s.firstName && v.jsx("p", { className: "form-error", children: s.firstName }),
-            ],
+              s.firstName && v.jsx("p", { className: "form-error", children: s.firstName })
+            ]
           }),
           v.jsxs("div", {
             children: [
@@ -25251,16 +25251,15 @@ return v.jsx(ls, {
                 name: "text",
                 className: "mt-1 w-full input h-32 bg-transparent",
                 placeholder:
-                  "Formulez clairement votre question... !!! Serveur Internal ERROR !!! > Voir Google Forms",
+                  "Formulez clairement votre question... !!! Serveur Internal ERROR !!! > Voir Google Forms"
               }),
-              s.text && v.jsx("p", { className: "form-error", children: s.text }),
-            ],
+              s.text && v.jsx("p", { className: "form-error", children: s.text })
+            ]
           }),
           s.form && v.jsx("p", { className: "form-error", children: s.form }),
           a &&
             v.jsxs("div", {
-              className:
-                "flex items-center gap-2 text-emerald-500 font-semibold animate-[fadeIn_.4s_ease]",
+              className: "flex items-center gap-2 text-emerald-500 font-semibold animate-[fadeIn_.4s_ease]",
               children: [
                 v.jsx("svg", {
                   width: "20",
@@ -25271,22 +25270,24 @@ return v.jsx(ls, {
                   strokeWidth: "3",
                   strokeLinecap: "round",
                   strokeLinejoin: "round",
-                  children: v.jsx("path", { d: "M20 6L9 17l-5-5" }),
+                  children: v.jsx("path", { d: "M20 6L9 17l-5-5" })
                 }),
                 v.jsx("span", {
-                  children:
-                    "Votre question a été transmise au plateau ! Merci pour votre participation.",
-                }),
-              ],
+                  children: "Votre question a été transmise au plateau ! Merci pour votre participation."
+                })
+              ]
             }),
-          v.jsx("button", { disabled: n, className: "btn-primary", children: n ? "Envoi..." : "Envoyer ma question" }),
-        ],
+          v.jsx("button", {
+            disabled: n,
+            className: "btn-primary",
+            children: n ? "Envoi..." : "Envoyer ma question"
+          })
+        ]
       }),
 
-      // Encadré Google Forms
+      // Encadré Google Forms si le serveur est en panne
       v.jsx("div", {
-        className:
-          "mt-6 p-4 border-2 border-yellow-400 bg-yellow-50 rounded-lg text-yellow-900 max-w-xl",
+        className: "mt-6 p-4 border-2 border-yellow-400 bg-yellow-50 rounded-lg text-yellow-900 max-w-xl",
         children: v.jsxs("p", {
           children: [
             "Le serveur de questions est actuellement indisponible. Vous pouvez envoyer votre question via Google Forms ",
@@ -25294,14 +25295,14 @@ return v.jsx(ls, {
               href: "https://forms.gle/rACVMYbFaRUGnTQJ7",
               target: "_blank",
               className: "underline font-semibold hover:text-yellow-700",
-              children: "ici",
+              children: "ici"
             }),
-            ".", // point final
-          ],
-        }),
-      }),
-    ],
-  }),
+            "." // dernier élément, pas de virgule
+          ]
+        })
+      })
+    ]
+  })
 });
 
 function SE({ q: n, selected: t, onSelect: s, onHide: i }) {
