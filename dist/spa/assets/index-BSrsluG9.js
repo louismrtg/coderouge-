@@ -19638,7 +19638,7 @@ function GS() {
       image: v.jsx("img", {
         src: "2.webp",
         alt: "Le blocage hospitalier",
-        className: "w-full h-40 object-cover rounded-xl block", // Ajout block pour forcer l'affichage
+        className: "w-full h-40 md:h-60 lg:h-72 object-cover rounded-xl block",
       }),
     },
     // === Slide 2 ===
@@ -19649,7 +19649,7 @@ function GS() {
       image: v.jsx("img", {
         src: "1.webp",
         alt: "La crise des lits",
-        className: "w-full h-40 object-cover rounded-xl block",
+        className: "w-full h-40 md:h-60 lg:h-72 object-cover rounded-xl block",
       }),
     },
     // === Slide 3 ===
@@ -19660,24 +19660,24 @@ function GS() {
       image: v.jsx("img", {
         src: "3.webp",
         alt: "Les oubliés du rural",
-        className: "w-full h-40 object-cover rounded-xl block",
+        className: "w-full h-40 md:h-60 lg:h-72 object-cover rounded-xl block",
       }),
     },
   ];
 
   return v.jsx("div", {
-    className: "embla rounded-xl ring-1 ring-border overflow-hidden", // overflow-hidden pour éviter que les images débordent
+    className: "embla rounded-xl ring-1 ring-border overflow-hidden",
     children: v.jsx("div", {
-      className: "embla__viewport w-full h-40", // hauteur fixe pour la viewport
+      className: "embla__viewport w-full h-40 md:h-60 lg:h-72",
       ref: n,
       children: v.jsx("div", {
-        className: "embla__container flex gap-6", // flex pour aligner correctement les slides
+        className: "embla__container flex gap-6",
         children: s.map((i) =>
           v.jsxs(
             "div",
             {
               className:
-                "embla__slide p-6 grid md:grid-cols-[1fr,2fr] gap-6 items-center min-w-[300px]", // min-width pour que Embla puisse gérer les slides
+                "embla__slide p-6 grid md:grid-cols-[1fr,2fr] gap-6 items-center min-w-[300px]",
               children: [
                 v.jsx("div", { children: i.image }),
                 v.jsxs("div", {
@@ -19687,7 +19687,8 @@ function GS() {
                       children: i.title,
                     }),
                     v.jsx("p", {
-                      className: "text-muted-foreground mt-2 whitespace-pre-line", // whitespace-pre-line pour gérer les \n
+                      className:
+                        "text-muted-foreground mt-2 whitespace-pre-line",
                       children: i.desc,
                     }),
                   ],
@@ -19701,6 +19702,7 @@ function GS() {
     }),
   });
 }
+
 
 const Bn = Object.create(null);
 Bn.open = "0";
