@@ -25413,7 +25413,7 @@ function kE() {
   const videos = [
     {
       title: "Reportage : Lohann Thonnon Varenne & Jessy Bouvet",
-      text: "Plongée immersive dans le quotidien de nos intervenants : portraits, parcours et moments marquants.",
+      text: " A venir...",
       src: null,
     },
     {
