@@ -19623,7 +19623,8 @@ function Jc(n = {}) {
 }
 Jc.globalOptions = void 0;
 function GS() {
-  const [n, t] = Xc({ loop: !0 }, [Jc({ delay: 4e3 })]);
+  const [n, t] = Xc({ loop: true }, [Jc({ delay: 4000 })]);
+
   k.useEffect(() => {
     t && t.reInit();
   }, [t]);
@@ -19632,51 +19633,53 @@ function GS() {
     // === Slide 1 ===
     {
       title: "Le blocage hospitalier",
-      desc: "36 % des patients de plus de 75 ans passent plus de 8 heures aux urgences.\n La pénurie de lits accentue la perte de chances pour les plus fragiles. \n (Source : DREES, 2025) ",
+      desc:
+        "36 % des patients de plus de 75 ans passent plus de 8 heures aux urgences.\nLa pénurie de lits accentue la perte de chances pour les plus fragiles.\n(Source : DREES, 2025)",
       image: v.jsx("img", {
         src: "2.webp",
         alt: "Le blocage hospitalier",
-        className: "w-full h-40 object-cover rounded-xl"
+        className: "w-full h-40 object-cover rounded-xl block", // Ajout block pour forcer l'affichage
       }),
     },
     // === Slide 2 ===
     {
       title: "La crise des lits",
-      desc: "-11 % de capacités d’hospitalisation entre 2013 et 2023.\nPrès de 43 000 lits supprimés, au cœur de la saturation des services. \n (Source : Assemblée nationale, 2024) ",
+      desc:
+        "-11 % de capacités d’hospitalisation entre 2013 et 2023.\nPrès de 43 000 lits supprimés, au cœur de la saturation des services.\n(Source : Assemblée nationale, 2024)",
       image: v.jsx("img", {
         src: "1.webp",
         alt: "La crise des lits",
-        className: "w-full h-40 object-cover rounded-xl"
+        className: "w-full h-40 object-cover rounded-xl block",
       }),
     },
     // === Slide 3 ===
     {
       title: "Les oubliés du rural",
-      desc: "21 % des passages aux urgences sont dus à l’absence de médecins de ville.\nLes territoires isolés, comme la Nièvre, sont particulièrement touchés.\n (Source : Vie publique, janvier 2025) ",
+      desc:
+        "21 % des passages aux urgences sont dus à l’absence de médecins de ville.\nLes territoires isolés, comme la Nièvre, sont particulièrement touchés.\n(Source : Vie publique, janvier 2025)",
       image: v.jsx("img", {
         src: "3.webp",
         alt: "Les oubliés du rural",
-        className: "w-full h-40 object-cover rounded-xl"
+        className: "w-full h-40 object-cover rounded-xl block",
       }),
     },
   ];
 
   return v.jsx("div", {
-    className: "embla rounded-xl ring-1 ring-border",
+    className: "embla rounded-xl ring-1 ring-border overflow-hidden", // overflow-hidden pour éviter que les images débordent
     children: v.jsx("div", {
-      className: "embla__viewport",
+      className: "embla__viewport w-full h-40", // hauteur fixe pour la viewport
       ref: n,
       children: v.jsx("div", {
-        className: "embla__container",
+        className: "embla__container flex gap-6", // flex pour aligner correctement les slides
         children: s.map((i) =>
           v.jsxs(
             "div",
             {
               className:
-                "embla__slide p-6 grid md:grid-cols-[1fr,2fr] gap-6 items-center",
+                "embla__slide p-6 grid md:grid-cols-[1fr,2fr] gap-6 items-center min-w-[300px]", // min-width pour que Embla puisse gérer les slides
               children: [
-                // ✅ MODIFICATION FINALE ICI
-                v.jsx("div", { children: i.image }), // Changé de i.svg à i.image
+                v.jsx("div", { children: i.image }),
                 v.jsxs("div", {
                   children: [
                     v.jsx("h3", {
@@ -19684,7 +19687,7 @@ function GS() {
                       children: i.title,
                     }),
                     v.jsx("p", {
-                      className: "text-muted-foreground mt-2",
+                      className: "text-muted-foreground mt-2 whitespace-pre-line", // whitespace-pre-line pour gérer les \n
                       children: i.desc,
                     }),
                   ],
@@ -19698,6 +19701,7 @@ function GS() {
     }),
   });
 }
+
 const Bn = Object.create(null);
 Bn.open = "0";
 Bn.close = "1";
