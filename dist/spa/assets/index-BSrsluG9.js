@@ -19630,7 +19630,6 @@ function GS() {
   }, [t]);
 
   const s = [
-    // === Slide 1 ===
     {
       title: "Le blocage hospitalier",
       desc: [
@@ -19641,11 +19640,10 @@ function GS() {
       image: v.jsx("img", {
         src: "https://ghxtmyhaueoszauzvbfh.supabase.co/storage/v1/object/public/media/2.webp",
         alt: "Le blocage hospitalier",
-        className: "w-full h-40 md:h-60 lg:h-72 object-cover rounded-xl block",
+        className: "w-full h-60 md:h-80 lg:h-96 object-cover rounded-xl block",
         style: { objectFit: "cover", width: "100%", height: "100%" },
       }),
     },
-    // === Slide 2 ===
     {
       title: "La crise des lits",
       desc: [
@@ -19656,11 +19654,10 @@ function GS() {
       image: v.jsx("img", {
         src: "https://ghxtmyhaueoszauzvbfh.supabase.co/storage/v1/object/public/media/1.webp",
         alt: "La crise des lits",
-        className: "w-full h-40 md:h-60 lg:h-72 object-cover rounded-xl block",
+        className: "w-full h-60 md:h-80 lg:h-96 object-cover rounded-xl block",
         style: { objectFit: "cover", width: "100%", height: "100%" },
       }),
     },
-    // === Slide 3 ===
     {
       title: "Les oubliés du rural",
       desc: [
@@ -19671,7 +19668,7 @@ function GS() {
       image: v.jsx("img", {
         src: "https://ghxtmyhaueoszauzvbfh.supabase.co/storage/v1/object/public/media/3.webp",
         alt: "Les oubliés du rural",
-        className: "w-full h-40 md:h-60 lg:h-72 object-cover rounded-xl block",
+        className: "w-full h-60 md:h-80 lg:h-96 object-cover rounded-xl block",
         style: { objectFit: "cover", width: "100%", height: "100%" },
       }),
     },
@@ -19680,7 +19677,7 @@ function GS() {
   return v.jsx("div", {
     className: "embla rounded-xl ring-1 ring-border overflow-hidden",
     children: v.jsx("div", {
-      className: "embla__viewport w-full h-40 md:h-60 lg:h-72",
+      className: "embla__viewport w-full h-60 md:h-80 lg:h-96", // ↑ hauteur plus grande
       ref: n,
       children: v.jsx("div", {
         className: "embla__container flex gap-6",
@@ -19692,12 +19689,25 @@ function GS() {
                 "embla__slide p-6 grid md:grid-cols-[1fr,2fr] gap-6 items-center min-w-[300px]",
               children: [
                 v.jsx("div", { children: i.image }),
-                v.jsx("div", {
-                  children: i.desc.map((line, idx) =>
-                    typeof line === "string"
-                      ? v.jsx("p", { key: idx, className: "text-muted-foreground mt-2 whitespace-pre-line", children: line })
-                      : line
-                  ),
+                v.jsxs("div", {
+                  children: [
+                    v.jsx("h3", {
+                      className: "text-2xl font-bold",
+                      children: i.title, // ✅ le titre est revenu
+                    }),
+                    i.desc.map((line, idx) =>
+                      typeof line === "string"
+                        ? v.jsx(
+                            "p",
+                            {
+                              key: idx,
+                              className: "text-muted-foreground mt-2 whitespace-pre-line",
+                              children: line,
+                            }
+                          )
+                        : line
+                    ),
+                  ],
                 }),
               ],
             },
@@ -19708,6 +19718,7 @@ function GS() {
     }),
   });
 }
+
 
 const Bn = Object.create(null);
 Bn.open = "0";
