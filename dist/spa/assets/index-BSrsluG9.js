@@ -22050,63 +22050,24 @@ function Hk() {
   );
 }
 function qk() {
-  const [isMuted, setIsMuted] = React.useState(true);
-  const iframeRef = React.useRef(null);
+  const container = document.createElement('div');
+  container.style.position = 'relative';
+  container.style.width = '100%';
+  container.style.maxWidth = '1024px';
+  container.style.margin = '0 auto';
+  container.style.backgroundColor = 'black';
+  
+  const iframe = document.createElement('iframe');
+  iframe.src = "https://player.vimeo.com/video/1122435302?autoplay=1&loop=1&muted=1&playsinline=1";
+  iframe.width = "100%";
+  iframe.height = "100%";
+  iframe.allow = "autoplay; fullscreen; picture-in-picture";
+  iframe.frameBorder = "0";
+  container.appendChild(iframe);
 
-  // Fonction "son" (affichage uniquement, pas de contrôle réel sur Vimeo)
-  function toggleSound() {
-    setIsMuted(!isMuted);
-  }
-
-  // Fonction plein écran
-  function goFullScreen() {
-    const iframe = iframeRef.current;
-    if (!iframe) return;
-    if (iframe.requestFullscreen) {
-      iframe.requestFullscreen();
-    } else if (iframe.webkitRequestFullscreen) { // Safari
-      iframe.webkitRequestFullscreen();
-    } else if (iframe.msRequestFullscreen) { // IE11
-      iframe.msRequestFullscreen();
-    }
-  }
-
-  return (
-    <div className="relative w-full max-w-4xl mx-auto rounded-xl overflow-hidden ring-1 ring-border bg-black aspect-video">
-      
-      <iframe
-        ref={iframeRef}
-        src="https://player.vimeo.com/video/1122435302?autoplay=1&loop=1&muted=1&playsinline=1"
-        className="w-full h-full"
-        allow="autoplay; fullscreen; picture-in-picture"
-        allowFullScreen
-        frameBorder="0"
-        title="Teaser EMC"
-      ></iframe>
-
-      {/* Bouton son (affichage seulement) */}
-      <button
-        onClick={toggleSound}
-        className="absolute top-3 right-3 inline-flex items-center justify-center h-10 w-10 rounded-full bg-black/60 text-white backdrop-blur active:scale-95 transition"
-        aria-label={isMuted ? "Activer le son" : "Couper le son"}
-      >
-        {isMuted ? "🔇" : "🔊"}
-      </button>
-
-      {/* Bouton plein écran */}
-      <button
-        onClick={goFullScreen}
-        className="absolute top-3 right-16 inline-flex items-center justify-center h-10 w-10 rounded-full bg-black/60 text-white backdrop-blur active:scale-95 transition"
-        aria-label="Plein écran"
-      >
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M4 4h6v2H6v4H4V4zM20 4h-6v2h4v4h2V4zM4 20h6v-2H6v-4H4v6zM20 20h-6v-2h4v-4h2v6z" />
-        </svg>
-      </button>
-
-    </div>
-  );
+  document.body.appendChild(container);
 }
+
 
 
 function Qk() {
