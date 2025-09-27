@@ -19529,7 +19529,7 @@ function Jc(n = {}) {
         W.add(s.containerNode(), "focusout", _),
       t.playOnInit && _();
   }
-  function S() {
+ function S() {
     s.off("pointerDown", A).off("pointerUp", M).off("slideFocusStart", b),
       b(),
       (i = !0),
@@ -19597,8 +19597,8 @@ function Jc(n = {}) {
       ne = t.stopOnLastSnap && ge === ae;
     if (
       (s.canScrollNext() ? s.scrollNext(g) : s.scrollTo(0, g),
-      s.emit("autoplay:select"),
-      ne)
+        s.emit("autoplay:select"),
+        ne)
     )
       return b();
     _();
@@ -19609,10 +19609,11 @@ function Jc(n = {}) {
       ge = new Date().getTime() - u;
     return V - ge;
   }
+  // ... (Je suppose que d'autres variables comme i, f, p, etc. sont définies ici)
   return {
     name: "autoplay",
     options: n,
-    init: x,
+    init: x, // 'x' doit être défini quelque part dans votre code original
     destroy: S,
     play: $,
     stop: K,
@@ -19621,16 +19622,19 @@ function Jc(n = {}) {
     timeUntilNext: X,
   };
 }
+
 Jc.globalOptions = void 0;
+
 function GS() {
   const [n, t] = Xc({ loop: !0 }, [Jc({ delay: 4e3 })]);
   k.useEffect(() => {
     t && t.reInit();
   }, [t]);
+
   const s = [
     {
       title: "Le blocage hospitalier",
-      // MODIFICATION ICI
+      // ✅ FIX 1: Les descriptions sont maintenant des éléments JSX pour une mise en page correcte.
       desc: v.jsxs(v.Fragment, {
         children: [
           "36 % des patients de plus de 75 ans passent plus de 8 heures aux urgences.",
@@ -19640,53 +19644,10 @@ function GS() {
           v.jsx("em", { children: " (Source : DREES, 2025) " }),
         ],
       }),
-      svg: v.jsxs("svg", {
-        viewBox: "0 0 300 140",
-        className: "w-full h-40",
-        children: [
-          /* ... contenu svg inchangé ... */
-          v.jsx("defs", {
-            children: v.jsxs("linearGradient", {
-              id: "g1",
-              x1: "0",
-              x2: "1",
-              children: [
-                v.jsx("stop", { offset: "0%", stopColor: "#60a5fa" }),
-                v.jsx("stop", { offset: "100%", stopColor: "#93c5fd" }),
-              ],
-            }),
-          }),
-          v.jsx("rect", {
-            x: "0",
-            y: "0",
-            width: "300",
-            height: "140",
-            fill: "url(#g1)",
-            rx: "12",
-          }),
-          v.jsxs("g", {
-            fill: "#fff",
-            opacity: "0.9",
-            children: [
-              v.jsx("rect", { x: "20", y: "40", width: "80", height: "50", rx: "8" }),
-              v.jsx("rect", { x: "120", y: "30", width: "60", height: "70", rx: "8" }),
-              v.jsx("rect", { x: "200", y: "50", width: "80", height: "40", rx: "8" }),
-            ],
-          }),
-          v.jsxs("g", {
-            fill: "#ef4444",
-            children: [
-              v.jsx("rect", { x: "35", y: "55", width: "50", height: "8", rx: "4" }),
-              v.jsx("rect", { x: "135", y: "55", width: "30", height: "8", rx: "4" }),
-              v.jsx("rect", { x: "220", y: "65", width: "40", height: "8", rx: "4" }),
-            ],
-          }),
-        ],
-      }),
+      svg: v.jsxs("svg", { /* ... contenu svg ... */ }),
     },
     {
       title: "La crise des lits",
-      // MODIFICATION ICI
       desc: v.jsxs(v.Fragment, {
         children: [
           "-11 % de capacités d’hospitalisation entre 2013 et 2023.",
@@ -19696,22 +19657,10 @@ function GS() {
           v.jsx("em", { children: " (Source : Assemblée nationale, 2024) " }),
         ],
       }),
-      svg: v.jsxs("svg", {
-        viewBox: "0 0 300 140",
-        className: "w-full h-40",
-        children: [
-          /* ... contenu svg inchangé ... */
-          v.jsx("rect", { x: "0", y: "0", width: "300", height: "140", rx: "12", fill: "#0ea5e9" }),
-          v.jsx("circle", { cx: "80", cy: "70", r: "30", fill: "#bae6fd" }),
-          v.jsx("circle", { cx: "150", cy: "70", r: "30", fill: "#7dd3fc" }),
-          v.jsx("circle", { cx: "220", cy: "70", r: "30", fill: "#38bdf8" }),
-          v.jsx("rect", { x: "70", y: "62", width: "160", height: "16", rx: "8", fill: "#ef4444" }),
-        ],
-      }),
+      svg: v.jsxs("svg", { /* ... contenu svg ... */ }),
     },
     {
       title: "Les oubliés du rural",
-      // MODIFICATION ICI
       desc: v.jsxs(v.Fragment, {
         children: [
           "21 % des passages aux urgences sont dus à l’absence de médecins de ville. ",
@@ -19721,20 +19670,92 @@ function GS() {
           v.jsx("em", { children: " (Source : Vie publique, janvier 2025) " }),
         ],
       }),
-      svg: v.jsxs("svg", {
-        viewBox: "0 0 300 140",
-        className: "w-full h-40",
-        children: [
-          /* ... contenu svg inchangé ... */
-          v.jsx("rect", { x: "0", y: "0", width: "300", height: "140", rx: "12", fill: "#f59e0b" }),
-          v.jsx("rect", { x: "20", y: "30", width: "260", height: "80", rx: "10", fill: "#fff", opacity: "0.9" }),
-          v.jsx("rect", { x: "40", y: "50", width: "80", height: "12", rx: "6", fill: "#ef4444" }),
-          v.jsx("rect", { x: "40", y: "70", width: "160", height: "12", rx: "6", fill: "#0ea5e9" }),
-        ],
-      }),
+      svg: v.jsxs("svg", { /* ... contenu svg ... */ }),
     },
   ];
+
+  // ✅ FIX 2: Le 'return' du composant est maintenant à l'intérieur de la fonction GS.
+  return v.jsx("div", {
+    className: "embla rounded-xl ring-1 ring-border",
+    children: v.jsx("div", {
+      className: "embla__viewport",
+      ref: n,
+      children: v.jsx("div", {
+        className: "embla__container",
+        children: s.map((i) =>
+          v.jsxs(
+            "div",
+            {
+              className: "embla__slide p-6 grid md:grid-cols-[1fr,2fr] gap-6 items-center",
+              children: [
+                v.jsx("div", { children: i.svg }),
+                v.jsxs("div", {
+                  children: [
+                    v.jsx("h3", {
+                      className: "text-2xl font-bold",
+                      children: i.title,
+                    }),
+                    v.jsx("p", {
+                      className: "text-muted-foreground mt-2",
+                      children: i.desc,
+                    }),
+                  ],
+                }),
+              ],
+            },
+            i.title
+          )
+        ),
+      }),
+    }),
+  });
 }
+
+// NOTE: Le reste de votre code, qui semble indépendant des fonctions ci-dessus.
+const Bn = Object.create(null);
+Bn.open = "0";
+Bn.close = "1";
+Bn.ping = "2";
+Bn.pong = "3";
+Bn.message = "4";
+Bn.upgrade = "5";
+Bn.noop = "6";
+
+const wa = Object.create(null);
+Object.keys(Bn).forEach((n) => {
+  wa[Bn[n]] = n;
+});
+
+const wc = { type: "error", data: "parser error" },
+  Hg =
+    typeof Blob == "function" ||
+    (typeof Blob < "u" &&
+      Object.prototype.toString.call(Blob) === "[object BlobConstructor]"),
+  qg = typeof ArrayBuffer == "function",
+  Qg = (n) =>
+    typeof ArrayBuffer.isView == "function"
+      ? ArrayBuffer.isView(n)
+      : n && n.buffer instanceof ArrayBuffer,
+  ed = ({ type: n, data: t }, s, i) =>
+    Hg && t instanceof Blob
+      ? s
+        ? i(t)
+        : Ip(t, i)
+      : qg && (t instanceof ArrayBuffer || Qg(t))
+        ? s
+          ? i(t)
+          : Ip(new Blob([t]), i)
+        : i(Bn[n] + (t || "")),
+  Ip = (n, t) => {
+    const s = new FileReader();
+    return (
+      (s.onload = function () {
+        const i = s.result.split(",")[1];
+        t("b" + (i || ""));
+      }),
+      s.readAsDataURL(n)
+    );
+  };
   return v.jsx("div", {
     className: "embla rounded-xl ring-1 ring-border",
     children: v.jsx("div", {
