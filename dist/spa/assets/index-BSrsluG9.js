@@ -22052,42 +22052,39 @@ function Hk() {
 // N'oubliez pas d'importer 'useRef' et 'useState' de React si ce n'est pas déjà fait :
 // import { useRef, useState } from 'react';
 
-// --- COMPOSANT VIDÉO AVEC MUTE ET PLEIN ÉCRAN ---
-function VideoPlayer() {
-  const videoRef = React.useRef(null); // Référence à la balise <video>
-  const [isMuted, setIsMuted] = React.useState(true); // État du son
+// VideoPlayer.jsx
+import React, { useRef, useState } from "react";
+
+export default function VideoPlayer() {
+  const videoRef = useRef(null);
+  const [isMuted, setIsMuted] = useState(true);
 
   // Activer / désactiver le son
-  function toggleMute() {
-    const videoElement = videoRef.current;
-    if (!videoElement) return;
-    const newMutedState = !isMuted;
-    videoElement.muted = newMutedState;
-    setIsMuted(newMutedState);
-  }
+  const toggleMute = () => {
+    if (!videoRef.current) return;
+    const newMuted = !isMuted;
+    videoRef.current.muted = newMuted;
+    setIsMuted(newMuted);
+  };
 
   // Passer en plein écran
-  function toggleFullscreen() {
-    const videoElement = videoRef.current;
-    if (!videoElement) return;
+  const toggleFullscreen = () => {
+    if (!videoRef.current) return;
+    const video = videoRef.current;
 
-    if (videoElement.requestFullscreen) {
-      videoElement.requestFullscreen();
-    } else if (videoElement.mozRequestFullScreen) { /* Firefox */
-      videoElement.mozRequestFullScreen();
-    } else if (videoElement.webkitRequestFullscreen) { /* Chrome, Safari, Opera */
-      videoElement.webkitRequestFullscreen();
-    } else if (videoElement.msRequestFullscreen) { /* IE/Edge */
-      videoElement.msRequestFullscreen();
-    }
-  }
+    if (video.requestFullscreen) video.requestFullscreen();
+    else if (video.webkitRequestFullscreen) video.webkitRequestFullscreen();
+    else if (video.mozRequestFullScreen) video.mozRequestFullScreen();
+    else if (video.msRequestFullscreen) video.msRequestFullscreen();
+  };
 
   return (
-    <div className="relative w-full max-w-4xl mx-auto rounded-xl overflow-hidden ring-1 ring-border bg-black">
+    <div className="relative w-full max-w-4xl mx-auto rounded-xl overflow-hidden ring-1 ring-gray-600 bg-black">
+      {/* Vidéo */}
       <video
         ref={videoRef}
         className="w-full h-full aspect-video object-cover"
-        src="/teaser EMC.mp4" // Chemin relatif depuis la racine du site
+        src="/teaser EMC.mp4"
         autoPlay
         muted
         loop
@@ -22097,32 +22094,19 @@ function VideoPlayer() {
       {/* Bouton Mute / Unmute */}
       <button
         onClick={toggleMute}
-        className="absolute top-3 right-3 inline-flex items-center justify-center h-10 w-10 rounded-full bg-black/60 text-white backdrop-blur active:scale-95 transition z-10"
+        className="absolute top-3 right-3 h-10 w-10 flex items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-md hover:bg-black/70 transition z-10"
         aria-label={isMuted ? "Activer le son" : "Couper le son"}
       >
-        {isMuted ? (
-          // Icône Mute (barrée)
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M11 5L6 9H3v6h3l5 4V5zM22 10l-4 4M18 10l4 4"/>
-          </svg>
-        ) : (
-          // Icône Son
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M11 5L6 9H3v6h3l5 4V5z"/>
-            <path d="M15.54 8.46a5 5 0 010 7.07M19.07 4.93a10 10 0 010 14.14"/>
-          </svg>
-        )}
+        {isMuted ? "🔇" : "🔊"}
       </button>
 
       {/* Bouton Plein Écran */}
       <button
         onClick={toggleFullscreen}
-        className="absolute bottom-3 right-3 inline-flex items-center justify-center h-10 w-10 rounded-full bg-black/60 text-white backdrop-blur active:scale-95 transition z-10"
+        className="absolute bottom-3 right-3 h-10 w-10 flex items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-md hover:bg-black/70 transition z-10"
         aria-label="Plein Écran"
       >
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"/>
-        </svg>
+        ⬜
       </button>
     </div>
   );
