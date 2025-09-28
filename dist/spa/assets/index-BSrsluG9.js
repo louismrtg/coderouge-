@@ -25058,6 +25058,7 @@ function bE() {
   const [n, t] = k.useState(!1),
     [s, i] = k.useState({}),
     [a, u] = k.useState(null);
+  const [showForm, setShowForm] = k.useState(false); // nouveau state pour afficher le form
 
   async function c(f) {
     f.preventDefault();
@@ -25102,95 +25103,9 @@ function bE() {
     children: v.jsxs("section", {
       className: "container mx-auto px-4 py-10",
       children: [
-        // Titre avec flèche cliquable
-        v.jsxs("h1", {
-          className:
-            "text-3xl md:text-5xl heading font-extrabold flex items-center gap-2 cursor-pointer",
-          onClick: () => window.history.back(),
-          children: [
-            v.jsxs("svg", {
-              width: "28",
-              height: "28",
-              viewBox: "0 0 24 24",
-              fill: "none",
-              stroke: "currentColor",
-              strokeWidth: "2",
-              className: "text-primary",
-              children: [
-                v.jsx("path", { d: "M12 19l-7-7 7-7" }),
-                v.jsx("path", { d: "M5 12h14" }),
-              ],
-            }),
-            " Poser une question",
-          ],
-        }),
+        /* ... ton formulaire principal ici ... */
 
-        v.jsx("p", {
-          className: "text-muted-foreground mt-3 max-w-2xl",
-          children:
-            "Partagez votre expérience ou interrogez nos invités. Les questions pertinentes peuvent apparaître en direct à l'écran.",
-        }),
-
-        // Formulaire
-        v.jsxs("form", {
-          onSubmit: c,
-          className: "mt-8 grid gap-4 max-w-xl",
-          children: [
-            v.jsxs("div", {
-              children: [
-                v.jsx("label", { className: "block text-sm font-medium", children: "Prénom" }),
-                v.jsx("input", {
-                  name: "firstName",
-                  className: "mt-1 w-full input bg-transparent",
-                  placeholder: "Votre prénom • ⚠️ !!! Serveur Internal ERROR !!! > Voir ci-dessous 👇",
-                }),
-                s.firstName && v.jsx("p", { className: "form-error", children: s.firstName }),
-              ],
-            }),
-            v.jsxs("div", {
-              children: [
-                v.jsx("label", { className: "block text-sm font-medium", children: "Votre question" }),
-                v.jsx("textarea", {
-                  name: "text",
-                  className: "mt-1 w-full input h-32 bg-transparent",
-                  placeholder:
-                    "Formulez clairement votre question... • ⚠️ !!! Serveur Internal ERROR !!! > Voir ci-dessous 👇",
-                }),
-                s.text && v.jsx("p", { className: "form-error", children: s.text }),
-              ],
-            }),
-            s.form && v.jsx("p", { className: "form-error", children: s.form }),
-            a &&
-              v.jsxs("div", {
-                className:
-                  "flex items-center gap-2 text-emerald-500 font-semibold animate-[fadeIn_.4s_ease]",
-                children: [
-                  v.jsx("svg", {
-                    width: "20",
-                    height: "20",
-                    viewBox: "0 0 24 24",
-                    fill: "none",
-                    stroke: "currentColor",
-                    strokeWidth: "3",
-                    strokeLinecap: "round",
-                    strokeLinejoin: "round",
-                    children: v.jsx("path", { d: "M20 6L9 17l-5-5" }),
-                  }),
-                  v.jsx("span", {
-                    children:
-                      "Votre question a été transmise au plateau ! Merci pour votre participation.",
-                  }),
-                ],
-              }),
-            v.jsx("button", {
-              disabled: n,
-              className: "btn-primary",
-              children: n ? "Envoi..." : "Envoyer ma question",
-            }),
-          ],
-        }),
-
-        // Encadré Google Forms si le serveur est en panne
+        // Bloc Google Forms avec bouton pour l'afficher
         v.jsx("div", {
           className:
             "mt-6 p-4 border-2 border-yellow-400 bg-yellow-50 rounded-lg text-yellow-900 max-w-3xl",
@@ -25199,23 +25114,37 @@ function bE() {
               v.jsx("p", {
                 className: "mb-4",
                 children:
-                  "Le serveur de questions est actuellement indisponible. Vous pouvez envoyer votre question en remplissant le formulaire ci-dessous :",
+                  "Le serveur de questions est actuellement indisponible.",
               }),
-              v.jsx("iframe", {
-                src: "https://docs.google.com/forms/d/e/1FAIpQLSd9IecUhg7fefU_3sFBmzQzYbvfgqlCxxaG2_IVAmzKmQ25Pg/viewform?embedded=true",
-                width: "100%",
-                height: "2000",
-                frameBorder: "0",
-                marginHeight: "0",
-                marginWidth: "0",
-              }),
+              v.jsx(
+                "button",
+                {
+                  className:
+                    "btn-primary mb-4",
+                  onClick: () => setShowForm(!showForm),
+                  children: showForm ? "Masquer le formulaire" : "Afficher le formulaire",
+                }
+              ),
+              showForm &&
+                v.jsx("div", {
+                  className:
+                    "transition-all duration-500 ease-in-out", // animation simple
+                  children: v.jsx("iframe", {
+                    src: "https://docs.google.com/forms/d/e/1FAIpQLSd9IecUhg7fefU_3sFBmzQzYbvfgqlCxxaG2_IVAmzKmQ25Pg/viewform?embedded=true",
+                    width: "100%",
+                    height: "2000",
+                    frameBorder: "0",
+                    marginHeight: "0",
+                    marginWidth: "0",
+                  }),
+                }),
             ],
           }),
         }),
       ],
     }),
   });
-} // <-- fermeture de bE()
+}
 
 
 
