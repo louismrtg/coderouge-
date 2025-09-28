@@ -25203,7 +25203,7 @@ function bE() {
               }),
               v.jsx("iframe", {
                 src: "https://docs.google.com/forms/d/e/1FAIpQLSd9IecUhg7fefU_3sFBmzQzYbvfgqlCxxaG2_IVAmzKmQ25Pg/viewform?embedded=true",
-                width: "100%",
+                width: "120%",
                 height: "1593",
                 frameBorder: "0",
                 marginHeight: "0",
