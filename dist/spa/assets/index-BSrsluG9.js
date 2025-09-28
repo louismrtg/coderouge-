@@ -25142,7 +25142,7 @@ function bE() {
                 v.jsx("input", {
                   name: "firstName",
                   className: "mt-1 w-full input bg-transparent",
-                  placeholder: "Votre prénom • ⚠️ !!! Serveur Internal ERROR !!! > Voir Google Forms",
+                  placeholder: "Votre prénom • ⚠️ !!! Serveur Internal ERROR !!! > Voir ci-dessous 👇",
                 }),
                 s.firstName && v.jsx("p", { className: "form-error", children: s.firstName }),
               ],
@@ -25154,7 +25154,7 @@ function bE() {
                   name: "text",
                   className: "mt-1 w-full input h-32 bg-transparent",
                   placeholder:
-                    "Formulez clairement votre question... • ⚠️ !!! Serveur Internal ERROR !!! > Voir Google Forms",
+                    "Formulez clairement votre question... • ⚠️ !!! Serveur Internal ERROR !!! > Voir ci-dessous 👇",
                 }),
                 s.text && v.jsx("p", { className: "form-error", children: s.text }),
               ],
@@ -25203,8 +25203,8 @@ function bE() {
               }),
               v.jsx("iframe", {
                 src: "https://docs.google.com/forms/d/e/1FAIpQLSd9IecUhg7fefU_3sFBmzQzYbvfgqlCxxaG2_IVAmzKmQ25Pg/viewform?embedded=true",
-                width: "120%",
-                height: "1593",
+                width: "100%",
+                height: "2000",
                 frameBorder: "0",
                 marginHeight: "0",
                 marginWidth: "0",
