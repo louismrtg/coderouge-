@@ -25373,18 +25373,32 @@ function kE() {
                   children: video.text,
                 }),
                 video.src
-                  ? v.jsx("div", {
-                      className: "relative w-full max-w-4xl aspect-video rounded-xl overflow-hidden ring-1 ring-border bg-black group",
-                      children: v.jsxs("video", {
-                        className: "w-full h-full aspect-video object-cover rounded-xl transition-transform duration-300 group-hover:scale-105",
+                  ? index === 0
+                    ? v.jsx("iframe", {
                         src: video.src,
-                        controls: true,
-                        muted: false,
-                        autoPlay: false,
-                        playsInline: true,
-                        style: { maxHeight: "600px" },
-                      }),
-                    })
+                        width: "100%",
+                        height: "100%",
+                        frameBorder: "0",
+                        allow: "autoplay; fullscreen; picture-in-picture",
+                        allowFullScreen: true,
+                        title: video.title,
+                        className:
+                          "w-full h-full aspect-video rounded-xl transition-transform duration-300 group-hover:scale-105",
+                      })
+                    : v.jsx("div", {
+                        className:
+                          "relative w-full max-w-4xl aspect-video rounded-xl overflow-hidden ring-1 ring-border bg-black group",
+                        children: v.jsxs("video", {
+                          className:
+                            "w-full h-full aspect-video object-cover rounded-xl transition-transform duration-300 group-hover:scale-105",
+                          src: video.src,
+                          controls: true,
+                          muted: false,
+                          autoPlay: false,
+                          playsInline: true,
+                          style: { maxHeight: "600px" },
+                        }),
+                      })
                   : v.jsx("div", {
                       className:
                         "w-full max-w-4xl aspect-video flex items-center justify-center rounded-xl bg-gradient-to-tr from-purple-500 via-pink-500 to-yellow-400 animate-pulse text-white font-bold text-xl shadow-lg ring-1 ring-white/30",
