@@ -25335,7 +25335,7 @@ function kE() {
     {
       title: "Reportage : Lohann Thonnon Varenne & Jessy Bouvet",
       text: " La crise des urgences… entre enjeux, responsabilités et réalités du terrain… Un reportage signé Jessy Bouvet et Lohann Thonnon-Varenne.",
-      src: "https://player.vimeo.com/video/1122928080?badge=0&autopause=0&player_id=0&app_id=58479",
+      src: "https://player.vimeo.com/video/1123465864?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
     },
     {
       title: "Teaser EMC",
