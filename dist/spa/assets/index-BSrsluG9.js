@@ -25332,9 +25332,6 @@ function rm() {
 }
 function kE() {
   const videos = [
-        {
-      text: " 📌 Ces reportages respectent le droit à l’image. (voir mentions légales en bas de page) Conformément à notre engagement, toute diffusion sera retirée le samedi 18 octobre à 00h.",
-    },
     {
       title: "Reportage : Lohann Thonnon Varenne & Jessy Bouvet",
       text: " La crise des urgences… entre enjeux, responsabilités et réalités du terrain… Un reportage signé Jessy Bouvet et Lohann Thonnon-Varenne.",
