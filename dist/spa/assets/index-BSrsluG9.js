@@ -25334,7 +25334,7 @@ function kE() {
   const videos = [
     {
       title: "Reportage : Lohann Thonnon Varenne & Jessy Bouvet",
-      text: " La crise des urgences… entre enjeux, responsabilités et réalités du terrain… Un reportage signé Jessy Bouvet et Lohann Thonnon-Varenne.",
+      text: "La crise des urgences… entre enjeux, responsabilités et réalités du terrain… Un reportage signé Jessy Bouvet et Lohann Thonnon-Varenne.",
       src: "https://player.vimeo.com/video/1123465864?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
     },
     {
@@ -25354,8 +25354,13 @@ function kE() {
       className: "container mx-auto px-4 py-10",
       children: [
         v.jsx("h1", {
-          className: "text-4xl heading font-extrabold mb-12 text-center",
+          className: "text-4xl heading font-extrabold mb-4 text-center",
           children: "Reportages",
+        }),
+        // Sous-titre légal en italique
+        v.jsx("p", {
+          className: "text-center italic text-sm mb-12",
+          children: "📌 Ce reportage respecte le droit à l’image. (voir mentions légales en pied de page) Conformément à notre engagement, toute diffusion sera retirée le samedi 18 octobre à 00h.",
         }),
 
         videos.map((video, index) =>
@@ -25373,7 +25378,7 @@ function kE() {
                   children: video.text,
                 }),
                 video.src
-                  ? index === 0
+                  ? index === 2 // YouTube
                     ? v.jsx("iframe", {
                         src: video.src,
                         width: "100%",
