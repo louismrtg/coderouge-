@@ -25332,22 +25332,22 @@ function rm() {
 }
 function kE() {
   const videos = [
-  {
-    title: "Reportage : Lohann Thonnon Varenne & Jessy Bouvet",
-    text: "La crise des urgences… entre enjeux, responsabilités et réalités du terrain… Un reportage signé Jessy Bouvet et Lohann Thonnon-Varenne.",
-    src: "https://player.vimeo.com/video/1123465864?badge=0&autopause=0&player_id=0&app_id=58479",
-  },
-  {
-    title: "Teaser EMC",
-    text: "Découvrez notre teaser officiel pour avoir un avant-goût de nos contenus.",
-    src: "https://ghxtmyhaueoszauzvbfh.supabase.co/storage/v1/object/sign/media/teaser_EMC.mp4?...",
-  },
-  {
-    title: "Rediffusion fictive du débat",
-    text: "En raison d’un problème technique, le débat n’a pas pu être retranscrit.",
-    src: "https://www.youtube.com/embed/I2Lc8zRScrk?vq=hd1080",
-  },
-];
+    {
+      title: "Reportage : Lohann Thonnon Varenne & Jessy Bouvet",
+      text: "La crise des urgences… entre enjeux, responsabilités et réalités du terrain… Un reportage signé Jessy Bouvet et Lohann Thonnon-Varenne.",
+      src: "https://player.vimeo.com/video/1123465864?badge=0&autopause=0&player_id=0&app_id=58479",
+    },
+    {
+      title: "Teaser EMC",
+      text: "Découvrez notre teaser officiel pour avoir un avant-goût de nos contenus.",
+      src: "https://ghxtmyhaueoszauzvbfh.supabase.co/storage/v1/object/sign/media/teaser_EMC.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zOWVmNjljMi00NTc1LTQwNjItOGY0Yy1mNDIzMGVmZTliY2EiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZWRpYS90ZWFzZXJfRU1DLm1wNCIsImlhdCI6MTc1ODk3MTUyOSwiZXhwIjoxNzkwNTA3NTI5fQ.C4FGWQGMeVm_T2qEhZ6KvJtOt5UUEjWAG8qGe9-qJHA",
+    },
+    {
+      title: "Rediffusion fictive du débat",
+      text: "En raison d’un problème technique, le débat n’a pas pu être retranscrit. [Voir la vidéo sur YouTube](https://www.youtube.com/watch?v=I2Lc8zRScrk)",
+      src: null, // plus de player intégré
+    },
+  ];
 
   return v.jsx(ls, {
     children: v.jsxs("section", {
@@ -25360,7 +25360,8 @@ function kE() {
         // Sous-titre légal en italique
         v.jsx("p", {
           className: "text-center italic text-sm mb-12",
-          children: "📌 Ce reportage respecte le droit à l’image. (voir mentions légales en pied de page) Conformément à notre engagement, toute diffusion sera retirée le samedi 18 octobre à 00h.",
+          children:
+            "📌 Ce reportage respecte le droit à l’image. (voir mentions légales en pied de page) Conformément à notre engagement, toute diffusion sera retirée le samedi 18 octobre à 00h.",
         }),
 
         videos.map((video, index) =>
@@ -25377,8 +25378,9 @@ function kE() {
                   className: "text-muted-foreground mb-4 max-w-2xl",
                   children: video.text,
                 }),
+                // Si src présent pour Vimeo ou vidéo locale
                 video.src
-                  ? index === 2 // YouTube
+                  ? index === 0 // Vimeo
                     ? v.jsx("iframe", {
                         src: video.src,
                         width: "100%",
@@ -25404,11 +25406,7 @@ function kE() {
                           style: { maxHeight: "600px" },
                         }),
                       })
-                  : v.jsx("div", {
-                      className:
-                        "w-full max-w-4xl aspect-video flex items-center justify-center rounded-xl bg-gradient-to-tr from-purple-500 via-pink-500 to-yellow-400 animate-pulse text-white font-bold text-xl shadow-lg ring-1 ring-white/30",
-                      children: "Vidéo à venir",
-                    }),
+                  : null, // Si pas de src, on affiche juste le texte cliquable déjà dans video.text
               ],
             },
             index
