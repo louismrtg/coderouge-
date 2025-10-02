@@ -25332,22 +25332,22 @@ function rm() {
 }
 function kE() {
   const videos = [
-    {
-      title: "Reportage : Lohann Thonnon Varenne & Jessy Bouvet",
-      text: "La crise des urgences… entre enjeux, responsabilités et réalités du terrain… Un reportage signé Jessy Bouvet et Lohann Thonnon-Varenne.",
-      src: "https://player.vimeo.com/video/1123465864?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479",
-    },
-    {
-      title: "Teaser EMC",
-      text: "Découvrez notre teaser officiel pour avoir un avant-goût de nos contenus.",
-      src: "https://ghxtmyhaueoszauzvbfh.supabase.co/storage/v1/object/sign/media/teaser_EMC.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zOWVmNjljMi00NTc1LTQwNjItOGY0Yy1mNDIzMGVmZTliY2EiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZWRpYS90ZWFzZXJfRU1DLm1wNCIsImlhdCI6MTc1ODk3MTUyOSwiZXhwIjoxNzkwNTA3NTI5fQ.C4FGWQGMeVm_T2qEhZ6KvJtOt5UUEjWAG8qGe9-qJHA",
-    },
-    {
-      title: "Rediffusion fictive du débat",
-      text: "En raison d’un problème technique, le débat n’a pas pu être retranscrit.",
-      src: "https://www.youtube.com/embed/I2Lc8zRScrk",
-    },
-  ];
+  {
+    title: "Reportage : Lohann Thonnon Varenne & Jessy Bouvet",
+    text: "La crise des urgences… entre enjeux, responsabilités et réalités du terrain… Un reportage signé Jessy Bouvet et Lohann Thonnon-Varenne.",
+    src: "https://player.vimeo.com/video/1123465864?badge=0&autopause=0&player_id=0&app_id=58479",
+  },
+  {
+    title: "Teaser EMC",
+    text: "Découvrez notre teaser officiel pour avoir un avant-goût de nos contenus.",
+    src: "https://ghxtmyhaueoszauzvbfh.supabase.co/storage/v1/object/sign/media/teaser_EMC.mp4?...",
+  },
+  {
+    title: "Rediffusion fictive du débat",
+    text: "En raison d’un problème technique, le débat n’a pas pu être retranscrit.",
+    src: "https://www.youtube.com/embed/I2Lc8zRScrk?vq=hd1080",
+  },
+];
 
   return v.jsx(ls, {
     children: v.jsxs("section", {
