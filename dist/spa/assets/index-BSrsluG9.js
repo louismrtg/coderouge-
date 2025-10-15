@@ -25056,21 +25056,21 @@ const _E = wE({
 });
 function bE() {
   const [n, t] = k.useState(!1),
-    [s, i] = k.useState({}),
-    [a, u] = k.useState(null);
-  const [showForm, setShowForm] = k.useState(false); // nouveau state pour afficher le Google Form
+        [s, i] = k.useState({}),
+        [a, u] = k.useState(null);
+  const [showForm, setShowForm] = k.useState(false);
 
   async function c(f) {
     f.preventDefault();
     u(null);
     i({});
     const p = new FormData(f.currentTarget),
-      m = {
-        firstName: String(p.get("firstName") || "").trim(),
-        lastName: String(p.get("lastName") || "").trim(),
-        text: String(p.get("text") || "").trim(),
-      },
-      g = _E.safeParse(m);
+          m = {
+            firstName: String(p.get("firstName") || "").trim(),
+            lastName: String(p.get("lastName") || "").trim(),
+            text: String(p.get("text") || "").trim(),
+          },
+          g = _E.safeParse(m);
 
     if (!g.success) {
       const x = {};
@@ -25089,11 +25089,11 @@ function bE() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(g.data),
       });
-      if (!res.ok) throw new Error("Erreur d'envoi");
+      if (!res.ok) throw new Error("Envoi désactivé");
       u("Merci ! Votre question a été envoyée en direct.");
       f.currentTarget.reset();
     } catch (x) {
-      i({ form: x.message });
+      i({ form: "Le serveur de questions est hors ligne." });
     } finally {
       t(!1);
     }
@@ -25103,10 +25103,8 @@ function bE() {
     children: v.jsxs("section", {
       className: "container mx-auto px-4 py-10",
       children: [
-        // Titre avec flèche cliquable
         v.jsxs("h1", {
-          className:
-            "text-3xl md:text-5xl heading font-extrabold flex items-center gap-2 cursor-pointer",
+          className: "text-3xl md:text-5xl heading font-extrabold flex items-center gap-2 cursor-pointer",
           onClick: () => window.history.back(),
           children: [
             v.jsxs("svg", {
@@ -25128,12 +25126,11 @@ function bE() {
 
         v.jsx("p", {
           className: "text-muted-foreground mt-3 max-w-2xl",
-          children:
-            "Partagez votre expérience ou interrogez nos invités. Les questions pertinentes peuvent apparaître en direct à l'écran.",
+          children: "Le serveur de questions est hors ligne. Les questions ne peuvent plus être envoyées.",
         }),
 
-        // Formulaire principal
-        v.jsxs("form", {
+        // Formulaire désactivé
+        v.jsx("form", {
           onSubmit: c,
           className: "mt-8 grid gap-4 max-w-xl",
           children: [
@@ -25143,9 +25140,9 @@ function bE() {
                 v.jsx("input", {
                   name: "firstName",
                   className: "mt-1 w-full input bg-transparent",
-                  placeholder: "Votre prénom • ⚠️ !!! Serveur OFF !!! > Voir ci-dessous 👇",
+                  placeholder: "Serveur hors ligne",
+                  disabled: true,
                 }),
-                s.firstName && v.jsx("p", { className: "form-error", children: s.firstName }),
               ],
             }),
             v.jsxs("div", {
@@ -25154,198 +25151,35 @@ function bE() {
                 v.jsx("textarea", {
                   name: "text",
                   className: "mt-1 w-full input h-32 bg-transparent",
-                  placeholder:
-                    "Formulez clairement votre question... • ⚠️ !!! Serveur OFF !!! > Voir ci-dessous 👇",
+                  placeholder: "Serveur hors ligne",
+                  disabled: true,
                 }),
-                s.text && v.jsx("p", { className: "form-error", children: s.text }),
               ],
             }),
-            s.form && v.jsx("p", { className: "form-error", children: s.form }),
-            a &&
-              v.jsxs("div", {
-                className:
-                  "flex items-center gap-2 text-emerald-500 font-semibold animate-[fadeIn_.4s_ease]",
-                children: [
-                  v.jsx("svg", {
-                    width: "20",
-                    height: "20",
-                    viewBox: "0 0 24 24",
-                    fill: "none",
-                    stroke: "currentColor",
-                    strokeWidth: "3",
-                    strokeLinecap: "round",
-                    strokeLinejoin: "round",
-                    children: v.jsx("path", { d: "M20 6L9 17l-5-5" }),
-                  }),
-                  v.jsx("span", {
-                    children:
-                      "Votre question a été transmise au plateau ! Merci pour votre participation.",
-                  }),
-                ],
-              }),
-            v.jsx("button", {
-              disabled: n,
-              className: "btn-primary",
-              children: n ? "Envoi..." : "Envoyer ma question",
-            }),
+            v.jsx("button", { disabled: true, className: "btn-primary", children: "Envoi désactivé" }),
           ],
-        }),
-
-        // Encadré Google Forms avec bouton pour l'afficher
-        v.jsx("div", {
-          className:
-            "mt-6 p-4 border-2 border-yellow-400 bg-yellow-50 rounded-lg text-yellow-900 max-w-3xl",
-          children: v.jsxs("div", {
-            children: [
-              v.jsx("p", {
-                className: "mb-4",
-                children:
-                  "Le serveur de questions est actuellement hors ligne.",
-              }),
-              v.jsx(
-                "button",
-                {
-                  className: "btn-primary mb-4",
-                  onClick: () => setShowForm(!showForm),
-                  children: showForm ? "Masquer le formulaire" : "Afficher le formulaire",
-                }
-              ),
-              showForm &&
-                v.jsx("div", {
-                  className: "transition-all duration-500 ease-in-out",
-                  children: v.jsx("iframe", {
-                    src: "https://docs.google.com/forms/d/e/1FAIpQLSd9IecUhg7fefU_3sFBmzQzYbvfgqlCxxaG2_IVAmzKmQ25Pg/viewform?embedded=true",
-                    width: "100%",
-                    height: "500",
-                    frameBorder: "0",
-                    marginHeight: "0",
-                    marginWidth: "0",
-                  }),
-                }),
-            ],
-          }),
         }),
       ],
     }),
   });
-} // <-- fermeture de bE()
-
-
-
-
-function SE({ q: n, selected: t, onSelect: s, onHide: i }) {
-  return v.jsxs("div", {
-    className: `p-4 rounded-lg border bg-card/50 animate-[fadeBounce_.5s_ease] glitch-in ${
-      t ? "ring-2 ring-yellow-400" : ""
-    }`,
-    children: [
-      v.jsx("div", {
-        className: "text-sm text-muted-foreground",
-        children: new Date(n.createdAt).toLocaleTimeString(),
-      }),
-      v.jsxs("div", {
-        className: "font-semibold mt-1",
-        children: [n.firstName, " ", n.lastName],
-      }),
-      v.jsx("p", { className: "mt-2 text-foreground/90", children: n.text }),
-      (s || i) &&
-        v.jsxs("div", {
-          className: "mt-3 flex gap-2",
-          children: [
-            s &&
-              v.jsx("button", {
-                onClick: s,
-                className:
-                  "px-3 py-1.5 rounded bg-primary text-primary-foreground hover:opacity-90 transition",
-                children: "Afficher",
-              }),
-            i &&
-              v.jsx("button", {
-                onClick: i,
-                className:
-                  "px-3 py-1.5 rounded bg-secondary text-secondary-foreground hover:opacity-90 transition",
-                children: "Masquer",
-              }),
-          ],
-        }),
-    ],
-  });
 }
-function rm() {
-  const [n, t] = k.useState({ questions: [], selectedId: null });
-  return (
-    k.useEffect(() => {
-      fetch("/api/questions")
-        .then((a) => a.json())
-        .then(t)
-        .catch(() => {});
-      const s = (a) => t(a),
-        i = (a) => t(a);
-      return (
-        $t.on("questions:init", s),
-        $t.on("questions:update", i),
-        () => {
-          $t.off("questions:init", s), $t.off("questions:update", i);
-        }
-      );
-    }, []),
-    v.jsx(ls, {
-      children: v.jsxs("section", {
-        className: "container mx-auto px-4 py-8",
-        children: [
-          v.jsxs("h1", {
-            className:
-              "text-3xl heading font-extrabold flex items-center gap-2 reveal",
-            children: [
-              v.jsxs("svg", {
-                width: "24",
-                height: "24",
-                viewBox: "0 0 24 24",
-                fill: "none",
-                stroke: "currentColor",
-                strokeWidth: "2",
-                className: "text-primary",
-                children: [
-                  v.jsx("path", {
-                    d: "M8 10a4 4 0 1 1 8 0c0 1.5-1 2.5-2 3.5s-1 2-1 2",
-                  }),
-                  v.jsx("circle", { cx: "12", cy: "19", r: "1" }),
-                ],
-              }),
-              "Questions",
-            ],
-          }),
-          v.jsx("p", {
-            className: "text-muted-foreground mt-2 reveal",
-            children: "Les dernières questions envoyées par le public.",
-          }),
-          v.jsx("div", {
-            className: "mt-6 grid gap-3",
-            children: n.questions.map((s) =>
-              v.jsx(SE, { q: s, selected: !1 }, s.id)
-            ),
-          }),
-        ],
-      }),
-    })
-  );
-}
+
 function kE() {
   const videos = [
     {
       title: "Reportage : Lohann Thonnon Varenne & Jessy Bouvet",
-      text: "La crise des urgences… entre enjeux, responsabilités et réalités du terrain… Un reportage signé Jessy Bouvet et Lohann Thonnon-Varenne.",
-      src: "https://player.vimeo.com/video/1123465864?badge=0&autopause=0&player_id=0&app_id=58479",
+      text: "La crise des urgences… entre enjeux, responsabilités et réalités du terrain…",
+      src: null,
     },
     {
       title: "Teaser EMC",
       text: "Découvrez notre teaser officiel pour avoir un avant-goût de nos contenus.",
-      src: "https://ghxtmyhaueoszauzvbfh.supabase.co/storage/v1/object/sign/media/teaser_EMC.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zOWVmNjljMi00NTc1LTQwNjItOGY0Yy1mNDIzMGVmZTliY2EiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZWRpYS90ZWFzZXJfRU1DLm1wNCIsImlhdCI6MTc1ODk3MTUyOSwiZXhwIjoxNzkwNTA3NTI5fQ.C4FGWQGMeVm_T2qEhZ6KvJtOt5UUEjWAG8qGe9-qJHA",
+      src: null,
     },
     {
       title: "Rediffusion fictive du débat",
-      text: "En raison d’un problème technique, le débat n’a pas pu être retranscrit. [Voir la vidéo sur YouTube](https://www.youtube.com/watch?v=I2Lc8zRScrk)",
-      src: null, // plus de player intégré
+      text: "En raison d’un problème technique, la vidéo n’est plus disponible.",
+      src: null,
     },
   ];
 
@@ -25357,56 +25191,19 @@ function kE() {
           className: "text-4xl heading font-extrabold mb-4 text-center",
           children: "Reportages",
         }),
-        // Sous-titre légal en italique
         v.jsx("p", {
           className: "text-center italic text-sm mb-12",
-          children:
-            "📌 Ce reportage respecte le droit à l’image. (voir mentions légales en pied de page) Conformément à notre engagement, toute diffusion sera retirée le samedi 18 octobre à 00h.",
+          children: "📌 Conformément à notre engagement, ces vidéos ne sont plus disponibles.",
         }),
-
         videos.map((video, index) =>
           v.jsxs(
             "div",
             {
               className: "mb-12 flex flex-col items-center text-center sm:text-left sm:items-start",
               children: [
-                v.jsx("h2", {
-                  className: "text-2xl font-bold mb-2",
-                  children: video.title,
-                }),
-                v.jsx("p", {
-                  className: "text-muted-foreground mb-4 max-w-2xl",
-                  children: video.text,
-                }),
-                // Si src présent pour Vimeo ou vidéo locale
-                video.src
-                  ? index === 0 // Vimeo
-                    ? v.jsx("iframe", {
-                        src: video.src,
-                        width: "100%",
-                        height: "100%",
-                        frameBorder: "0",
-                        allow: "autoplay; fullscreen; picture-in-picture",
-                        allowFullScreen: true,
-                        title: video.title,
-                        className:
-                          "w-full h-full aspect-video rounded-xl transition-transform duration-300 group-hover:scale-105",
-                      })
-                    : v.jsx("div", {
-                        className:
-                          "relative w-full max-w-4xl aspect-video rounded-xl overflow-hidden ring-1 ring-border bg-black group",
-                        children: v.jsxs("video", {
-                          className:
-                            "w-full h-full aspect-video object-cover rounded-xl transition-transform duration-300 group-hover:scale-105",
-                          src: video.src,
-                          controls: true,
-                          muted: false,
-                          autoPlay: false,
-                          playsInline: true,
-                          style: { maxHeight: "600px" },
-                        }),
-                      })
-                  : null, // Si pas de src, on affiche juste le texte cliquable déjà dans video.text
+                v.jsx("h2", { className: "text-2xl font-bold mb-2", children: video.title }),
+                v.jsx("p", { className: "text-muted-foreground mb-4 max-w-2xl", children: video.text }),
+                !video.src && v.jsx("p", { className: "text-sm italic text-muted-foreground", children: "Vidéo non disponible." }),
               ],
             },
             index
@@ -25416,7 +25213,6 @@ function kE() {
     }),
   });
 }
-
 
 function EE() {
   return v.jsx(ls, {
