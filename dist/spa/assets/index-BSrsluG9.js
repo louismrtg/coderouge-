@@ -25129,9 +25129,7 @@ function bE() {
         v.jsx("p", {
           className: "text-muted-foreground mt-3 max-w-2xl",
           children:
-            "🚫 Ce formulaire n’est plus accessible.
-Le service de réception des questions en direct a été clôturé à la fin de l’émission.
-Merci à toutes les personnes ayant participé et partagé leurs réflexions.",
+            "🚫Ce formulaire n’est plus accessible. Le service de réception des questions en direct a été clôturé à la fin de l’émission.",
         }),
 
         // Formulaire principal
