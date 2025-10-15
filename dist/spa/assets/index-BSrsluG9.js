@@ -25052,7 +25052,7 @@ const _E = wE({
   lastName: Xu()
     .optional()
     .transform((n) => n ?? ""),
-  text: Xu().min(, "Votre question est trop courte").max(2e3),
+  text: Xu().min(1, "Votre question est trop courte").max(2e3),
 });
 function bE() {
   const [n, t] = k.useState(!1),
