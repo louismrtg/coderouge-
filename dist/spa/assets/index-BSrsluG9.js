@@ -25207,8 +25207,7 @@ function bE() {
                 {
                   className: "btn-primary mb-4",
                   onClick: () => setShowForm(!showForm),
-                  children: showForm ? "⚠️ Le module de questions en ligne est désormais fermé." : "⚠️ Le module de questions en ligne est désormais fermé.
-Conformément à notre politique de diffusion et à la fin de l’émission, le serveur n’est plus actif.",
+                  children: showForm ? "⚠️ Le module de questions en ligne est désormais fermé." : "Conformément à notre politique de diffusion et à la fin de l’émission, le serveur n’est plus actif.",
                 }
               ),
               showForm &&
