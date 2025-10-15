@@ -25052,7 +25052,7 @@ const _E = wE({
   lastName: Xu()
     .optional()
     .transform((n) => n ?? ""),
-  text: Xu().min(5, "Votre question est trop courte").max(2e3),
+  text: Xu().min(, "Votre question est trop courte").max(2e3),
 });
 function bE() {
   const [n, t] = k.useState(!1),
@@ -25089,8 +25089,8 @@ function bE() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(g.data),
       });
-      if (!res.ok) throw new Error("Erreur d'envoi");
-      u("Merci ! Votre question a été envoyée en direct.");
+      if (!res.ok) throw new Error("🚫 Aucune question n'est désormais acceptée");
+      u("Votre question n'a pas été envoyée ERROR: 🚫 Aucune question n'est désormais acceptée.");
       f.currentTarget.reset();
     } catch (x) {
       i({ form: x.message });
@@ -25129,7 +25129,9 @@ function bE() {
         v.jsx("p", {
           className: "text-muted-foreground mt-3 max-w-2xl",
           children:
-            "Partagez votre expérience ou interrogez nos invités. Les questions pertinentes peuvent apparaître en direct à l'écran.",
+            "🚫 Ce formulaire n’est plus accessible.
+Le service de réception des questions en direct a été clôturé à la fin de l’émission.
+Merci à toutes les personnes ayant participé et partagé leurs réflexions.",
         }),
 
         // Formulaire principal
@@ -25143,7 +25145,7 @@ function bE() {
                 v.jsx("input", {
                   name: "firstName",
                   className: "mt-1 w-full input bg-transparent",
-                  placeholder: "Votre prénom • ⚠️ !!! Serveur OFF !!! > Voir ci-dessous 👇",
+                  placeholder: "Formulaire désactivé",
                 }),
                 s.firstName && v.jsx("p", { className: "form-error", children: s.firstName }),
               ],
@@ -25155,7 +25157,7 @@ function bE() {
                   name: "text",
                   className: "mt-1 w-full input h-32 bg-transparent",
                   placeholder:
-                    "Formulez clairement votre question... • ⚠️ !!! Serveur OFF !!! > Voir ci-dessous 👇",
+                    "Formulaire désactivé",
                 }),
                 s.text && v.jsx("p", { className: "form-error", children: s.text }),
               ],
@@ -25179,14 +25181,14 @@ function bE() {
                   }),
                   v.jsx("span", {
                     children:
-                      "Votre question a été transmise au plateau ! Merci pour votre participation.",
+                      "Votre question n'a pas été envoyée ERROR: 🚫 Aucune question n'est désormais acceptée.",
                   }),
                 ],
               }),
             v.jsx("button", {
               disabled: n,
               className: "btn-primary",
-              children: n ? "Envoi..." : "Envoyer ma question",
+              children: n ? "Envoi..." : "Envoi indisponible",
             }),
           ],
         }),
@@ -25200,23 +25202,24 @@ function bE() {
               v.jsx("p", {
                 className: "mb-4",
                 children:
-                  "Le serveur de questions est actuellement hors ligne.",
+                  "⚠️ Le module de questions en ligne est désormais fermé.",
               }),
               v.jsx(
                 "button",
                 {
                   className: "btn-primary mb-4",
                   onClick: () => setShowForm(!showForm),
-                  children: showForm ? "Masquer le formulaire" : "Afficher le formulaire",
+                  children: showForm ? "⚠️ Le module de questions en ligne est désormais fermé." : "⚠️ Le module de questions en ligne est désormais fermé.
+Conformément à notre politique de diffusion et à la fin de l’émission, le serveur n’est plus actif.",
                 }
               ),
               showForm &&
                 v.jsx("div", {
                   className: "transition-all duration-500 ease-in-out",
                   children: v.jsx("iframe", {
-                    src: "https://docs.google.com/forms/d/e/1FAIpQLSd9IecUhg7fefU_3sFBmzQzYbvfgqlCxxaG2_IVAmzKmQ25Pg/viewform?embedded=true",
-                    width: "100%",
-                    height: "500",
+                    src: "null",
+                    width: "500",
+                    height: "100",
                     frameBorder: "0",
                     marginHeight: "0",
                     marginWidth: "0",
@@ -25335,7 +25338,7 @@ function kE() {
     {
       title: "Reportage : Lohann Thonnon Varenne & Jessy Bouvet",
       text: "La crise des urgences… entre enjeux, responsabilités et réalités du terrain… Un reportage signé Jessy Bouvet et Lohann Thonnon-Varenne.",
-      src: "https://player.vimeo.com/video/1123465864?badge=0&autopause=0&player_id=0&app_id=58479",
+      src: "null",
     },
     {
       title: "Teaser EMC",
@@ -25343,8 +25346,8 @@ function kE() {
       src: "https://ghxtmyhaueoszauzvbfh.supabase.co/storage/v1/object/sign/media/teaser_EMC.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zOWVmNjljMi00NTc1LTQwNjItOGY0Yy1mNDIzMGVmZTliY2EiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtZWRpYS90ZWFzZXJfRU1DLm1wNCIsImlhdCI6MTc1ODk3MTUyOSwiZXhwIjoxNzkwNTA3NTI5fQ.C4FGWQGMeVm_T2qEhZ6KvJtOt5UUEjWAG8qGe9-qJHA",
     },
     {
-      title: "Rediffusion fictive du débat",
-      text: "En raison d’un problème technique, le débat n’a pas pu être retranscrit. [Voir la vidéo sur YouTube](https://www.youtube.com/watch?v=I2Lc8zRScrk)",
+      title: "Rediffusion du débat",
+      text: "🎬 Ce contenu n'est plus disponible conformément à notre engagement de diffusion.",
       src: null, // plus de player intégré
     },
   ];
@@ -25361,7 +25364,7 @@ function kE() {
         v.jsx("p", {
           className: "text-center italic text-sm mb-12",
           children:
-            "📌 Ce reportage respecte le droit à l’image. (voir mentions légales en pied de page) Conformément à notre engagement, toute diffusion sera retirée le samedi 18 octobre à 00h.",
+            "📌🎬 Ces contenus ne sont plus disponibles conformément à notre engagement de diffusion..",
         }),
 
         videos.map((video, index) =>
